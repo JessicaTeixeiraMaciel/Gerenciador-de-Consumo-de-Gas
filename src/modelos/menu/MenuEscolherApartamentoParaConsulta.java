@@ -3,22 +3,26 @@ package modelos.menu;
 import banco.Apartamentos;
 import interfaces.FormatacaoDoMenu;
 import modelos.apartamento.Apartamento;
+import modelos.pessoa.Inquilino;
+import modelos.pessoa.Pessoa;
+import modelos.pessoa.Proprietario;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
-public class MenuConsultarDadosDosApartamento extends MenuInicial
+public class MenuEscolherApartamentoParaConsulta extends MenuInicial
         implements FormatacaoDoMenu {
+
+    Apartamento apartamentoSelecionado;
 
 
 
     @Override
     public void opcoesDoMenu() {
-        Apartamentos apartamentos = new Apartamentos();
-        List<Apartamento> listaDeApartamentos = new ArrayList<>(apartamentos.listaDeApartamentos());
         limparTela();
         List<String> numerosDosApartamentos = new ArrayList<>();
-        for (Apartamento apartamento : listaDeApartamentos){
+        for (Apartamento apartamento : apartamentos.listaDeApartamentos()){
             numerosDosApartamentos.add(apartamento.getNumero());
         }
         do {
@@ -27,27 +31,37 @@ public class MenuConsultarDadosDosApartamento extends MenuInicial
             System.out.println(numerosDosApartamentos.toString().replace("[","").replace("]","") + ")");
             System.out.println("Ou digite 'v' para voltar ao menu anterior.");
         } while (validarEscolha(numerosDosApartamentos));
-        irParaOpcaoSelecionada(listaDeApartamentos);
+        irParaOpcaoSelecionada();
     }
 
+    @Override
+    public boolean validarEscolha(List<String> listaDeOpcoes) {
+        listaDeOpcoes.add("V");
+        listaDeOpcoes.add("v");
+        Scanner sc = new Scanner(System.in);
+        textoCiano("Informe sua opção aqui:" );
+        setEscolha(sc.next());
+        if (!listaDeOpcoes.contains(getEscolha())){
+            textoVermelho("Entrada inválida! Tente Novamente.\n");
+        }
+        return !listaDeOpcoes.contains(getEscolha());
+    }
 
-    public void irParaOpcaoSelecionada(List<Apartamento> listaDeApartamentos) {
+    @Override
+    public void irParaOpcaoSelecionada() {
         if (getEscolha().equals("V") || getEscolha().equals("v")){
             MenuInicial menuInicial = new MenuInicial();
             menuInicial.opcoesDoMenu();
         } else {
             limparTela();
-            Apartamento apartamentoSelecionado = null;
 
-            for (Apartamento apartamento : listaDeApartamentos){
+            for (Apartamento apartamento : apartamentos.listaDeApartamentos()){
                 if (apartamento.getNumero().equals(getEscolha())){
                     apartamentoSelecionado = apartamento;
                 }
             }
-            assert apartamentoSelecionado != null;
-            apartamento = apartamentoSelecionado;
-            MenuEditarDadosDoApartamento menuEditarDadosDoApartamento = new MenuEditarDadosDoApartamento();
-            menuEditarDadosDoApartamento.opcoesDoMenu();
+            MenuConsultarDadosDoApartamento menuConsultarDadosDoApartamento = new MenuConsultarDadosDoApartamento();
+            menuConsultarDadosDoApartamento.exibirDadosDoApartamento(apartamentoSelecionado);
         }
     }
 }

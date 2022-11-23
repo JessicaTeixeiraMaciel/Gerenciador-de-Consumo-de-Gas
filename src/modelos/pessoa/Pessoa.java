@@ -14,7 +14,12 @@ public class Pessoa {
         this.numeroDoApartamento = numeroDoApartamento;
     }
 
+
     public Pessoa() {
+    }
+
+    public Pessoa(String numeroDoApartamento) {
+        this.numeroDoApartamento = numeroDoApartamento;
     }
 
     public String getNome() {

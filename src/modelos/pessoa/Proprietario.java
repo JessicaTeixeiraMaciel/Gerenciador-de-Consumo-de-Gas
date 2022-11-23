@@ -19,7 +19,12 @@ public class Proprietario extends Pessoa
         this.possuiInquilino = possuiInquilino;
     }
 
+
     public Proprietario() {
+    }
+
+    public Proprietario(String numeroDoApartamento) {
+        super(numeroDoApartamento);
     }
 
     public boolean isPossuiInquilino() {

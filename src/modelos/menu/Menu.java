@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
-
+    Apartamentos apartamentos = new Apartamentos();
     private String escolha;
 
 
@@ -41,7 +41,7 @@ public class Menu {
     }
 
     public void separador(){
-        System.out.println(ANSI_CINZA);
+        System.out.print(ANSI_CINZA);
         for (int i = 0; i < 100; i++){
             System.out.print("-");
         }

@@ -9,6 +9,10 @@ public class Inquilino extends Pessoa
         implements ResponsavelPeloApartamento {
 
 
+    public Inquilino(String numeroDoApartamento) {
+        super(numeroDoApartamento);
+    }
+
     public Inquilino() {
     }
 }

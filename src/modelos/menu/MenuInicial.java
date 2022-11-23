@@ -55,12 +55,11 @@ public class MenuInicial extends Menu
         return !listaDeOpcoes.contains(getEscolha());
     }
 
-
-
+    @Override
     public void irParaOpcaoSelecionada() {
         switch (getEscolha().toLowerCase()){
             case "1":
-                MenuConsultarDadosDosApartamento consultarDadosDosApartamento = new MenuConsultarDadosDosApartamento();
+                MenuEscolherApartamentoParaConsulta consultarDadosDosApartamento = new MenuEscolherApartamentoParaConsulta();
                 consultarDadosDosApartamento.opcoesDoMenu();
                 break;
             case "2":

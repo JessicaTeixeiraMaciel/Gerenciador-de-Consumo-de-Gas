@@ -4,7 +4,7 @@ import interfaces.FormatacaoDoMenu;
 
 import java.util.List;
 
-public class MenuEditarDadosDoApartamento extends MenuConsultarDadosDosApartamento
+public class MenuEditarDadosDoApartamento extends MenuConsultarDadosDoApartamento
         implements FormatacaoDoMenu {
 
     @Override
