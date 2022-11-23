@@ -1,9 +1,9 @@
 package servicos;
 
 import banco.DadosApartamentos;
-import modelos.Apartamento;
-import modelos.Inquilino;
-import modelos.Proprietario;
+import modelos.apartamento.Apartamento;
+import modelos.pessoa.Inquilino;
+import modelos.pessoa.Proprietario;
 
 import java.util.*;
 
@@ -70,8 +70,8 @@ public class MenuService {
         for (Apartamento apartamento : listaDeApartamentos){
             apartamentos.add(apartamento.getIdentificacaoDoApartamento());
         }
-        System.out.println(ANSI_AMARELO + "CONSULTAR DADOS DOS APARTAMENTOS" + ANSI_RESET);
         do {
+            System.out.println(ANSI_AMARELO + "CONSULTAR DADOS DOS APARTAMENTOS" + ANSI_RESET);
             System.out.print("Insira o número do apartamento que deseja consultar (");
             System.out.println(apartamentos.toString().replace("[","").replace("]","") + ")");
             System.out.println("Ou digite 'v' para voltar ao menu anterior.");
@@ -102,9 +102,17 @@ public class MenuService {
     }
 
     public boolean validarEscolha (List<String> listaDeOpcoes){
-        listaDeOpcoes.add("v");
-        listaDeOpcoes.add("V");
-        System.out.println(ANSI_CIANO + "\nInforme sua opção aqui:" + ANSI_RESET);
+        System.out.println(ANSI_CIANO + "Informe sua opção aqui:" + ANSI_RESET);
+        Scanner sc = new Scanner(System.in);
+        escolha = sc.next();
+        if (!listaDeOpcoes.contains(escolha)){
+            System.out.println(ANSI_VERMELHO + "Entrada inválida! Tente Novamente.\n" + ANSI_RESET);
+        }
+        return !listaDeOpcoes.contains(escolha);
+    }
+
+    public boolean entradaInvalida (List<String> listaDeOpcoes){
+        System.out.println(ANSI_CIANO + "Informe sua opção aqui:" + ANSI_RESET);
         Scanner sc = new Scanner(System.in);
         escolha = sc.next();
         if (!listaDeOpcoes.contains(escolha)){
@@ -136,7 +144,7 @@ public class MenuService {
     }
 
     public void opcoesEditarVoltarMenuApartamento(){
-        System.out.println(ANSI_AMARELO + "Insira 'v' para voltar ao menu anterior ou 'e' para editar os dados." + ANSI_RESET);
+        System.out.println(ANSI_AMARELO + "Insira 'e' para editar os dados ou qualquer outro digito para voltar ao menu anterior." + ANSI_RESET);
         List<String> listaDeOpcoes = new ArrayList<>();
         listaDeOpcoes.add("v");
         listaDeOpcoes.add("V");
@@ -169,7 +177,8 @@ public class MenuService {
 
         separador();
         do {
-            System.out.println(ANSI_AMARELO + "Selecione qual dado deseja editar: " + ANSI_RESET);
+            limparTela();
+            System.out.println(ANSI_AMARELO + "Selecione qual dado do APARTAMENTO " + apartamento.getIdentificacaoDoApartamento() + " deseja atualizar: " + ANSI_RESET);
             imprimirListaDeOpcoes(listaDeOpcoes);
         } while (validarEscolha(opcaoEnumerada(listaDeOpcoes)));
 
@@ -186,7 +195,15 @@ public class MenuService {
                 }
                 break;
             case "2":
-                apartamento.editarResponsavelPeloApartamento(apartamento);
+                do {
+                    menuPossuiInquilino();
+                }while (validarEscolha(opcaoSimNao()));
+                if (escolha.equals("n") || escolha.equals("N")){
+                    System.out.println("Nenhuma alteração foi feita.");
+                } else {
+                    apartamento.editarResponsavelPeloApartamento(apartamento);
+                    System.out.println("Alteração salva com sucesso!");
+                }
                 break;
             case "3":
                 proprietario.editarNome(apartamento);
@@ -197,8 +214,17 @@ public class MenuService {
             case "5":
                 proprietario.editarEmail(apartamento);
                 break;
+            case"6":
+                inquilino.editarNome(apartamento);
+                break;
+            case "7":
+                inquilino.editarNumeroContato(apartamento);
+                break;
+            case "8":
+                inquilino.editarEmail(apartamento);
+                break;
         }
-        menuEditarApartamento();
+        menuContinuarEditando();
     }
 
     public List<String> opcaoSimNao (){
@@ -219,7 +245,30 @@ public class MenuService {
         }
     }
 
+    public void menuPossuiInquilino(){
+        boolean possuiInquilino = apartamento.isPossuiInquilino();
+        if (possuiInquilino){
+            System.out.println("Deseja mudar o responsável do imóvel para 'Proprietário'? (s/n)");
+        }else {
+            System.out.println("Deseja mudar o responsável do imóvel para 'Inquilino'? (s/n)");
+        }
+    }
+
+    public void menuContinuarEditando (){
+        Scanner sc = new Scanner(System.in);
+        System.out.println(ANSI_AMARELO + "Insira 'c' para continuar editando ou qualquer outro digito para sair do modo de edição." + ANSI_RESET);
+        escolha = sc.next();
+        if ("c".equals(escolha) || "C".equals(escolha)) {
+            editarDadosApartamento(apartamento);
+        } else {
+            limparTela();
+            menuEditarApartamento();
+        }
+
+    }
+
     public void separador(){
         System.out.println(ANSI_CINZA + "---------------------------------------------------------------------------" + ANSI_RESET);
     }
+
 }

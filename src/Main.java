@@ -1,12 +1,14 @@
 import banco.DadosApartamentos;
+import modelos.menu.Menu;
+import modelos.menu.MenuInicial;
 import servicos.ApartamentoService;
 import servicos.MenuService;
 
 public class Main {
 
     public static void main(String[] args) {
-        MenuService menuService = new MenuService();
+        MenuInicial menuInicial = new MenuInicial();
 
-        menuService.menuInicial();
+        menuInicial.opcoesDoMenu();
     }
 }

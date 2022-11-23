@@ -1,10 +1,8 @@
-package modelos;
+package modelos.apartamento;
 
 import java.time.LocalDate;
-import java.util.Scanner;
 
 public class Apartamento {
-
     private String identificacaoDoApartamento;
     private String nomeDoProprietario;
     private String numeroDoProprietario;
@@ -14,7 +12,6 @@ public class Apartamento {
     private String nomeDoInquilino;
     private String numeroDoInquilino;
     private String emailDoInquilino;
-    private LocalDate dataDeEntradaInquilino;
 
     public Apartamento( String identificacaoDoApartamento, String nomeDoProprietario, String numeroDoProprietario, String emailDoProprietario, boolean possuiInquilino, boolean possuiMedidorDeGas) {
         this.identificacaoDoApartamento = identificacaoDoApartamento;
@@ -35,7 +32,6 @@ public class Apartamento {
         this.nomeDoInquilino = nomeDoInquilino;
         this.numeroDoInquilino = numeroDoInquilino;
         this.emailDoInquilino = emailDoInquilino;
-        this.dataDeEntradaInquilino = dataDeEntradaInquilino;
     }
 
     @Override
@@ -50,7 +46,6 @@ public class Apartamento {
                 ", nomeDoInquilino='" + nomeDoInquilino + '\'' +
                 ", numeroDoInquilino='" + numeroDoInquilino + '\'' +
                 ", emailDoInquilino='" + emailDoInquilino + '\'' +
-                ", dataDeEntradaInquilino=" + dataDeEntradaInquilino +
                 '}';
     }
 
@@ -135,11 +130,6 @@ public class Apartamento {
         this.emailDoInquilino = emailDoInquilino;
     }
 
-    public LocalDate getDataDeEntradaInquilino() {
-        return dataDeEntradaInquilino;
-    }
 
-    public void setDataDeEntradaInquilino(LocalDate dataDeEntradaInquilino) {
-        this.dataDeEntradaInquilino = dataDeEntradaInquilino;
-    }
+
 }

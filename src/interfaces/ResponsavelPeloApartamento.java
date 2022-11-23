@@ -1,8 +1,8 @@
 package interfaces;
 
-import modelos.Apartamento;
+import modelos.apartamento.Apartamento;
 
-public interface ResponsaveisPeloApartamento {
+public interface ResponsavelPeloApartamento {
     void imprimirDadoDoResponsavel(Apartamento apartamento);
     void editarNome(Apartamento apartamento);
     void editarNumeroContato(Apartamento apartamento);

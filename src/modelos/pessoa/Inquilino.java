@@ -1,17 +1,27 @@
-package modelos;
+package modelos.pessoa;
 
-import interfaces.ResponsaveisPeloApartamento;
+import interfaces.ResponsavelPeloApartamento;
+import modelos.apartamento.Apartamento;
 
 import java.util.Scanner;
 
-public class Inquilino implements ResponsaveisPeloApartamento {
+public class Inquilino extends Pessoa
+        implements ResponsavelPeloApartamento {
+
+    public Inquilino(String nome, String numeroDeContato, String email) {
+        super(nome, numeroDeContato, email);
+    }
+
+    public Inquilino() {
+        super();
+    }
+
     @Override
     public void imprimirDadoDoResponsavel(Apartamento apartamento) {
-        System.out.println("Dados do Inquilino");
+        System.out.println(">>>>>> Dados do Inquilino <<<<<<");
         System.out.println("Nome do inquilino: " + apartamento.getNomeDoInquilino());
         System.out.println("Celular do inquilino: " + apartamento.getNumeroDoInquilino());
         System.out.println("Email do inquilino: " + apartamento.getEmailDoInquilino());
-        System.out.println("Data de entrada do inquilino: " + apartamento.getDataDeEntradaInquilino());
     }
 
     @Override
@@ -20,6 +30,7 @@ public class Inquilino implements ResponsaveisPeloApartamento {
         System.out.println("Informe o nome do inquilino: ");
         String nome = sc.next();
         apartamento.setNomeDoInquilino(nome);
+        System.out.println("Nome do inquilino alterado com sucesso!");
     }
 
     @Override
@@ -28,6 +39,7 @@ public class Inquilino implements ResponsaveisPeloApartamento {
         System.out.println("Informe o número do inquilino: ");
         String numero = sc.next();
         apartamento.setNumeroDoInquilino(numero);
+        System.out.println("Número do inquilino alterado com sucesso!");
     }
 
     @Override
@@ -36,5 +48,6 @@ public class Inquilino implements ResponsaveisPeloApartamento {
         System.out.println("Informe o email do inquilino: ");
         String email = sc.next();
         apartamento.setEmailDoInquilino(email);
+        System.out.println("Email do inquilino alterado com sucesso!");
     }
 }

@@ -1,10 +1,9 @@
 package servicos;
 
 import banco.DadosApartamentos;
-import interfaces.ResponsaveisPeloApartamento;
-import modelos.Apartamento;
-import modelos.Inquilino;
-import modelos.Proprietario;
+import modelos.apartamento.Apartamento;
+import modelos.pessoa.Inquilino;
+import modelos.pessoa.Proprietario;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +31,7 @@ public class ApartamentoService {
     }
 
     public void dadosApartamento(Apartamento apartamento){
-        System.out.println(ANSI_AMARELO + "\nApartamento " + apartamento.getIdentificacaoDoApartamento() + " selecionado" + ANSI_RESET);
+        System.out.println(ANSI_AMARELO + "\nApartamento " + apartamento.getIdentificacaoDoApartamento() + ANSI_RESET);
         System.out.print("Situação do apartamento: ");
         if (apartamento.isPossuiMedidorDeGas()){
             System.out.println("Possui medidor de gás");
@@ -55,6 +54,7 @@ public class ApartamentoService {
         }
         separador();
     }
+
 
     public void separador(){
         System.out.println(ANSI_CINZA + "---------------------------------------------------------------------------" + ANSI_RESET);

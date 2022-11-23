@@ -1,6 +1,6 @@
 package banco;
 
-import modelos.Apartamento;
+import modelos.apartamento.Apartamento;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -8,7 +8,7 @@ Informações:
 - Há dois cilindros no condomínio: um reserva, que deverá estar sempre cheio, e um que está sendo usado.
 
 O programa deverá:
-- Registrar mensalmente os valores dos medidores individuas de cada condômino (Data da Medição, modelos.Apartamento, Valor em m3);
+- Registrar mensalmente os valores dos medidores individuas de cada condômino (Data da Medição, modelos.apartamento.Apartamento, Valor em m3);
 - Calcular a diferença de valores entre a medição atual e última, informando o consumo de gás durante o periodo (Consumo = Medição Atual - Última Medição);
 - Registrar as trocas e preços do cilindro de gás (Data, modelos.Fornecedor, Quantidade de cilindros trocados, Valor unitário, Valor total);
 - Calcular o valor/m³ de gás (Cilindro de 45kg = 20m3);
