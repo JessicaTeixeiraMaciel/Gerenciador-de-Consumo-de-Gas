@@ -56,7 +56,7 @@ public class MenuInicial extends Menu
     }
 
 
-    @Override
+
     public void irParaOpcaoSelecionada() {
         switch (getEscolha().toLowerCase()){
             case "1":

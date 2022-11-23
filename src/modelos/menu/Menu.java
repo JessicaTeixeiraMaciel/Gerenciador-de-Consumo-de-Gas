@@ -1,9 +1,7 @@
 package modelos.menu;
 
-import banco.DadosApartamentos;
+import banco.Apartamentos;
 import modelos.apartamento.Apartamento;
-import modelos.pessoa.Inquilino;
-import modelos.pessoa.Proprietario;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,10 +10,8 @@ import java.util.Scanner;
 public class Menu {
 
     private String escolha;
-    DadosApartamentos dadosApartamentos = new DadosApartamentos();
-    List<Apartamento> listaDeApartamentos = new ArrayList<>(dadosApartamentos.listaDeApartamentos());
-    Proprietario proprietario = new Proprietario();
-    Inquilino inquilino = new Inquilino();
+
+
     Scanner sc = new Scanner(System.in);
     String ANSI_AMARELO = "\u001B[33m";
     String ANSI_RESET = "\u001B[0m";
@@ -25,6 +21,7 @@ public class Menu {
 
     public Menu() {
     }
+
 
     public void limparTela(){
         for (int i = 0; i < 50; i++){

@@ -4,11 +4,14 @@ public class Pessoa {
     private String nome;
     private String numeroDeContato;
     private String email;
+    String numeroDoApartamento;
 
-    public Pessoa(String nome, String numeroDeContato, String email) {
+
+    public Pessoa(String nome, String numeroDeContato, String email, String numeroDoApartamento) {
         this.nome = nome;
         this.numeroDeContato = numeroDeContato;
         this.email = email;
+        this.numeroDoApartamento = numeroDoApartamento;
     }
 
     public Pessoa() {
@@ -36,5 +39,13 @@ public class Pessoa {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getNumeroDoApartamento() {
+        return numeroDoApartamento;
+    }
+
+    public void setNumeroDoApartamento(String numeroDoApartamento) {
+        this.numeroDoApartamento = numeroDoApartamento;
     }
 }

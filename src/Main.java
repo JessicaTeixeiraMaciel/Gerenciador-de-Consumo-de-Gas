@@ -1,4 +1,3 @@
-import banco.DadosApartamentos;
 import modelos.menu.Menu;
 import modelos.menu.MenuInicial;
 import servicos.ApartamentoService;
@@ -8,7 +7,6 @@ public class Main {
 
     public static void main(String[] args) {
         MenuInicial menuInicial = new MenuInicial();
-
         menuInicial.opcoesDoMenu();
     }
 }
