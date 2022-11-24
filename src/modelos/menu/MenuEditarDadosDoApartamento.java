@@ -9,12 +9,11 @@ import modelos.pessoa.Proprietario;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MenuEditarDadosDoApartamento extends MenuConsultarDadosDoApartamento
-        {
+public class MenuEditarDadosDoApartamento extends MenuConsultarDadosDoApartamento {
 
 
 
-    public void opcoesDoMenu(Proprietario proprietario, Inquilino inquilino) {
+    public void opcoesDoMenu(Apartamento apartamento, Proprietario proprietario, Inquilino inquilino) {
         Pessoa pessoa = new Pessoa();
         List<String> listaDeOpcoes = new ArrayList<>();
         listaDeOpcoes.add("Situação do apartamento");

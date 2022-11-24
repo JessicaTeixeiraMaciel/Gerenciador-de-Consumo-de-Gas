@@ -54,7 +54,7 @@ public class MenuConsultarDadosDoApartamento extends MenuEscolherApartamentoPara
             textoAmarelo("Dados do Inquilino");
             imprimirDados(inquilinoSelecionado);
         }
-        opcoesDoMenu();
+        opcoesDoMenu(apartamento);
     }
 
     public void imprimirDados(Pessoa pessoa){
@@ -63,8 +63,8 @@ public class MenuConsultarDadosDoApartamento extends MenuEscolherApartamentoPara
         System.out.println("Email: " + pessoa.getEmail());
     }
 
-    @Override
-    public void opcoesDoMenu() {
+
+    public void opcoesDoMenu(Apartamento apartamento) {
         textoAmarelo("Insira 'e' para editar os dados ou qualquer outro digito para voltar ao menu anterior.");
         List<String> listaDeOpcoes = new ArrayList<>();
         listaDeOpcoes.add("v");
@@ -79,7 +79,7 @@ public class MenuConsultarDadosDoApartamento extends MenuEscolherApartamentoPara
                 break;
             case "e":
                 MenuEditarDadosDoApartamento menuEditarDadosDoApartamento = new MenuEditarDadosDoApartamento();
-                menuEditarDadosDoApartamento.opcoesDoMenu(proprietarioSelecionado,inquilinoSelecionado);
+                menuEditarDadosDoApartamento.opcoesDoMenu(apartamento,proprietarioSelecionado,inquilinoSelecionado);
                 break;
         }
     }
