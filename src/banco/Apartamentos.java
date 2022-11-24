@@ -32,24 +32,28 @@ public class Apartamentos {
     }
 
     public List<Proprietario> listaDeProprietarios(){
-        atualizacaoDeDados();
+        atualizacaoDeProprietarios();
         return listaDeProprietarios;
     }
 
     public List<Inquilino> listaDeInquilinos(){
-        atualizarDadosInquilino();
+        atualizacaoDeInquilinos();
         return listaDeInquilinos;
     }
 
-    public void adicionarResponsaveis(List<Apartamento> listaDeApartamentos){
+    public void adicionarProprietarios(List<Apartamento> listaDeApartamentos){
         for (Apartamento apartamento : listaDeApartamentos) {
             listaDeProprietarios.add(new Proprietario(apartamento.getNumero()));
+        }
+    }
+    public void adicionarInquilinos(List<Apartamento> listaDeApartamentos){
+        for (Apartamento apartamento : listaDeApartamentos) {
             listaDeInquilinos.add(new Inquilino(apartamento.getNumero()));
         }
     }
 
-    public void atualizacaoDeDados(){
-        adicionarResponsaveis(listaDeApartamentos());
+    public void atualizacaoDeProprietarios(){
+        adicionarProprietarios(listaDeApartamentos());
 
         editarListaDeProprietarios(listaDeProprietarios.get(0),"Amanda","(71) 00000-0000","amanda@email.com",false);
         editarListaDeProprietarios(listaDeProprietarios.get(1),"Beatriz","(71) 11111-1111","beatriz@email.com",true);
@@ -61,13 +65,16 @@ public class Apartamentos {
         editarListaDeProprietarios(listaDeProprietarios.get(7),"Hugo","(71) 77777-7777","hugo@email.com",false);
         editarListaDeProprietarios(listaDeProprietarios.get(8),"Igor","(71) 88888-8888","igor@email.com",false);
         editarListaDeProprietarios(listaDeProprietarios.get(9),"Júlia","(71) 99999-9999","julia@email.com",false);
-    }
 
-    public void atualizarDadosInquilino(){
+    }
+    public void atualizacaoDeInquilinos(){
+        adicionarInquilinos(listaDeApartamentos());
+
         editarListaDeInquilinos(listaDeInquilinos.get(1),"Fulano","(71) 10101-1010","fulana@email.com");
         editarListaDeInquilinos(listaDeInquilinos.get(4),"Cicrana","(71) 20202-2020","cicrana@email.com");
         editarListaDeInquilinos(listaDeInquilinos.get(5),"Beltrano","(71) 20202-2020","beltrano@email.com");
     }
+
 
     public void editarListaDeProprietarios(Proprietario proprietario, String nome, String numero, String email,boolean possuiInquilino){
         proprietario.setNome(nome);

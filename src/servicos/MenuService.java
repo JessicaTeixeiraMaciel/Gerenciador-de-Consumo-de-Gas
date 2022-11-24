@@ -1,12 +1,12 @@
-package servicos;
-
-import modelos.apartamento.Apartamento;
-import modelos.pessoa.Inquilino;
-import modelos.pessoa.Proprietario;
-
-import java.util.*;
-
-public class MenuService {
+//package servicos;
+//
+//import modelos.apartamento.Apartamento;
+//import modelos.pessoa.Inquilino;
+//import modelos.pessoa.Proprietario;
+//
+//import java.util.*;
+//
+//public class MenuService {
 //
 //    DadosApartamentos dadosApartamentos = new DadosApartamentos();
 //    ApartamentoService apartamentoService = new ApartamentoService();
@@ -269,5 +269,5 @@ public class MenuService {
 //    public void separador(){
 //        System.out.println(ANSI_CINZA + "---------------------------------------------------------------------------" + ANSI_RESET);
 //    }
-
-}
+//
+//}

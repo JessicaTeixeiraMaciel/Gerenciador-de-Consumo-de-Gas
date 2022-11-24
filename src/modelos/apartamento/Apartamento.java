@@ -12,6 +12,10 @@ public class Apartamento {
     public Apartamento() {
     }
 
+    public void editarSituacaoDoApartamento(Apartamento apartamento){
+        apartamento.setPossuiMedidorDeGas(!apartamento.isPossuiMedidorDeGas());
+    }
+
     @Override
     public String toString() {
         return "Apartamento{" +

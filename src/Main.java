@@ -1,7 +1,4 @@
-import modelos.menu.Menu;
 import modelos.menu.MenuInicial;
-import servicos.ApartamentoService;
-import servicos.MenuService;
 
 public class Main {
 

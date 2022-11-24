@@ -19,13 +19,17 @@ public class Proprietario extends Pessoa
         this.possuiInquilino = possuiInquilino;
     }
 
-
-    public Proprietario() {
+    public void editarPossuiInquilino(Proprietario proprietario){
+        proprietario.setPossuiInquilino(!proprietario.isPossuiInquilino());
     }
 
     public Proprietario(String numeroDoApartamento) {
         super(numeroDoApartamento);
     }
+
+    public Proprietario() {
+    }
+
 
     public boolean isPossuiInquilino() {
         return possuiInquilino;

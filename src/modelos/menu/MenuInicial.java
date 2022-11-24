@@ -42,8 +42,6 @@ public class MenuInicial extends Menu
         } while (validarEscolha(enumerarOpcoes(listaDeOpcoes)));
         irParaOpcaoSelecionada();
     }
-
-
     @Override
     public boolean validarEscolha(List<String> listaDeOpcoes){
         Scanner sc = new Scanner(System.in);

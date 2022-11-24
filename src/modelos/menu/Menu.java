@@ -48,6 +48,7 @@ public class Menu {
         System.out.println(ANSI_RESET);
     }
 
+    
     public void imprimirListaDeOpcoes (List<String> listaDeOpcoes){
         int i = 1;
         for (String opcao : listaDeOpcoes){
@@ -64,6 +65,15 @@ public class Menu {
             i++;
         }
         return enumeracao;
+    }
+
+    public List<String> opcaoSimNao (){
+        List<String> listaDeOpcoes = new ArrayList<>();
+        listaDeOpcoes.add("s");
+        listaDeOpcoes.add("S");
+        listaDeOpcoes.add("n");
+        listaDeOpcoes.add("N");
+        return listaDeOpcoes;
     }
 
     public void continuarEditando(){
