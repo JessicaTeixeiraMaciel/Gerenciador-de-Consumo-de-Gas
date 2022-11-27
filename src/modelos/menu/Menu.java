@@ -42,7 +42,6 @@ public class Menu {
         System.out.println(ANSI_RESET);
     }
 
-
     public void imprimirListaDeOpcoes (List<String> listaDeOpcoes){
         int i = 1;
         for (String opcao : listaDeOpcoes){

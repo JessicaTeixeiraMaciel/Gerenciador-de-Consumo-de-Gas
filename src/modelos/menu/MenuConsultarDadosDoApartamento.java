@@ -1,5 +1,6 @@
 package modelos.menu;
 
+import interfaces.FormatacaoDoMenu;
 import modelos.apartamento.Apartamento;
 import modelos.pessoa.Inquilino;
 import modelos.pessoa.Pessoa;
@@ -8,7 +9,7 @@ import modelos.pessoa.Proprietario;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MenuConsultarDadosDoApartamento extends MenuEscolherApartamentoParaConsulta {
+public class MenuConsultarDadosDoApartamento extends MenuEscolherApartamentoParaConsulta implements FormatacaoDoMenu {
 
     Proprietario proprietarioSelecionado;
     Inquilino inquilinoSelecionado;
@@ -75,7 +76,7 @@ public class MenuConsultarDadosDoApartamento extends MenuEscolherApartamentoPara
                 break;
             case "e":
                 MenuEditarDadosDoApartamento menuEditarDadosDoApartamento = new MenuEditarDadosDoApartamento();
-                menuEditarDadosDoApartamento.opcoesDeEdicao(apartamento,proprietarioSelecionado,inquilinoSelecionado,lista,listaDeProprietarios,listaDeInquilinos);
+                menuEditarDadosDoApartamento.opcoesDoMenu(apartamento,proprietarioSelecionado,inquilinoSelecionado,lista,listaDeProprietarios,listaDeInquilinos);
                 break;
         }
     }

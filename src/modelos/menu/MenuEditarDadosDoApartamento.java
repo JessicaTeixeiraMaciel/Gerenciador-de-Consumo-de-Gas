@@ -1,5 +1,6 @@
 package modelos.menu;
 
+import interfaces.FormatacaoDoMenu;
 import modelos.apartamento.Apartamento;
 import modelos.pessoa.Inquilino;
 import modelos.pessoa.Pessoa;
@@ -9,9 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class MenuEditarDadosDoApartamento extends MenuConsultarDadosDoApartamento {
+public class MenuEditarDadosDoApartamento extends MenuConsultarDadosDoApartamento implements FormatacaoDoMenu {
 
-    public void opcoesDeEdicao(Apartamento apartamento, Proprietario proprietario, Inquilino inquilino,List<Apartamento> lista,List<Proprietario> listaDeProprietarios,List<Inquilino> listaDeInquilinos) {
+    public void opcoesDoMenu(Apartamento apartamento, Proprietario proprietario, Inquilino inquilino,List<Apartamento> lista,List<Proprietario> listaDeProprietarios,List<Inquilino> listaDeInquilinos) {
         limparTela();
         List<String> listaDeOpcoes = new ArrayList<>();
         listaDeOpcoes.add("Situação do apartamento");
@@ -84,11 +85,11 @@ public class MenuEditarDadosDoApartamento extends MenuConsultarDadosDoApartament
 
     public void continuarEditando(Apartamento apartamento, Proprietario proprietario, Inquilino inquilino,List<Apartamento> lista,List<Proprietario> listaDeProprietarios,List<Inquilino> listaDeInquilinos,List<String> listaDeOpcoes){
         do {
-            textoAmarelo("Insira 'e' para continuar editando ou 'v' para sair do modo de edição.");
+            textoAmarelo("Insira 'e' para continuar editando ou 'v' para voltar ao menu anterior.");
         }while(validarEscolha(listaDeOpcoes));
         switch (getEscolha().toLowerCase()){
             case "e":
-                opcoesDeEdicao(apartamento,proprietario,inquilino,lista,listaDeProprietarios,listaDeInquilinos);
+                opcoesDoMenu(apartamento,proprietario,inquilino,lista,listaDeProprietarios,listaDeInquilinos);
             case "v":
                 limparTela();
                 exibirDadosDoApartamento(apartamento,listaDeProprietarios,lista,listaDeInquilinos);

@@ -1,5 +1,6 @@
 package modelos.menu;
 
+import interfaces.FormatacaoDoMenu;
 import modelos.apartamento.Apartamento;
 import modelos.pessoa.Inquilino;
 import modelos.pessoa.Proprietario;
@@ -8,8 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class MenuEscolherApartamentoParaConsulta extends MenuInicial {
+public class MenuEscolherApartamentoParaConsulta extends MenuInicial implements FormatacaoDoMenu {
 
+    @Override
     public void opcoesDoMenu(List<Apartamento> lista,List<Proprietario> listaDeProprietarios,List<Inquilino> listaDeInquilinos) {
         limparTela();
         List<String> numerosDosApartamentos = new ArrayList<>();

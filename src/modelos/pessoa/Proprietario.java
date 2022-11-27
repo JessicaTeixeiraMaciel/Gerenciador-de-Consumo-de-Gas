@@ -1,9 +1,6 @@
 package modelos.pessoa;
 
-import interfaces.ResponsavelPeloApartamento;
-
-public class Proprietario extends Pessoa
-        implements ResponsavelPeloApartamento {
+public class Proprietario extends Pessoa {
 
     boolean possuiInquilino;
 

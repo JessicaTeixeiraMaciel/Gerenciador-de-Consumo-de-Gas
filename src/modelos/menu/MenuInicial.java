@@ -1,5 +1,6 @@
 package modelos.menu;
 
+import interfaces.FormatacaoDoMenu;
 import modelos.apartamento.Apartamento;
 import modelos.pessoa.Inquilino;
 import modelos.pessoa.Proprietario;
@@ -8,13 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class MenuInicial extends Menu {
+public class MenuInicial extends Menu implements FormatacaoDoMenu {
 
 
     public MenuInicial() {
-
     }
-
 
     public void boasVindas(){
         limparTela();
@@ -25,7 +24,6 @@ public class MenuInicial extends Menu {
                 " |  _ <  |  __/ \\__ \\  _    | |_| | | (_| | | (__  | (_| | | |    |  __/ | (__  | | | (__  | (_| |\n" +
                 " |_| \\_\\  \\___| |___/ (_)    \\___/   \\__,_|  \\___|  \\__,_| |_|     \\___|  \\___| |_|  \\___|  \\__,_|\n\n");
     }
-
 
 
     public void opcoesDoMenu(List<Apartamento> lista, List<Proprietario> listaDeProprietarios, List<Inquilino> listaDeInquilinos){

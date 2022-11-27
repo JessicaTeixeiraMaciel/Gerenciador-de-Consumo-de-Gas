@@ -6,19 +6,10 @@ public class Pessoa {
     private String email;
     String numeroDoApartamento;
 
-    public Pessoa(String nome, String numeroDeContato, String email, String numeroDoApartamento) {
-        this.nome = nome;
-        this.numeroDeContato = numeroDeContato;
-        this.email = email;
-        this.numeroDoApartamento = numeroDoApartamento;
-    }
-
     public Pessoa(String numeroDoApartamento) {
         this.numeroDoApartamento = numeroDoApartamento;
     }
 
-    public Pessoa() {
-    }
     public String getNome() {
         return nome;
     }
