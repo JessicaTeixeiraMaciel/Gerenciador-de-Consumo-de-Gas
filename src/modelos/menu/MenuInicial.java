@@ -2,15 +2,15 @@ package modelos.menu;
 
 import interfaces.FormatacaoDoMenu;
 import modelos.apartamento.Apartamento;
+import modelos.pessoa.Inquilino;
+import modelos.pessoa.Proprietario;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class MenuInicial extends Menu
-        implements FormatacaoDoMenu {
+public class MenuInicial extends Menu {
 
-    Apartamento apartamento;
 
     public MenuInicial() {
 
@@ -28,8 +28,8 @@ public class MenuInicial extends Menu
     }
 
 
-    @Override
-    public void opcoesDoMenu(){
+
+    public void opcoesDoMenu(List<Apartamento> lista, List<Proprietario> listaDeProprietarios, List<Inquilino> listaDeInquilinos){
         List<String> listaDeOpcoes = new ArrayList<>();
         listaDeOpcoes.add("Consultar dados dos apartamentos");
         listaDeOpcoes.add("Consultar trocas de cilindros");
@@ -40,9 +40,9 @@ public class MenuInicial extends Menu
             System.out.println("O que deseja fazer?");
             imprimirListaDeOpcoes(listaDeOpcoes);
         } while (validarEscolha(enumerarOpcoes(listaDeOpcoes)));
-        irParaOpcaoSelecionada();
+        irParaOpcaoSelecionada(lista, listaDeProprietarios, listaDeInquilinos);
     }
-    @Override
+
     public boolean validarEscolha(List<String> listaDeOpcoes){
         Scanner sc = new Scanner(System.in);
         textoCiano("Informe sua opção aqui:" );
@@ -53,12 +53,12 @@ public class MenuInicial extends Menu
         return !listaDeOpcoes.contains(getEscolha());
     }
 
-    @Override
-    public void irParaOpcaoSelecionada() {
+
+    public void irParaOpcaoSelecionada(List<Apartamento> lista, List<Proprietario> listaDeProprietarios, List<Inquilino> listaDeInquilinos) {
         switch (getEscolha().toLowerCase()){
             case "1":
                 MenuEscolherApartamentoParaConsulta consultarDadosDosApartamento = new MenuEscolherApartamentoParaConsulta();
-                consultarDadosDosApartamento.opcoesDoMenu();
+                consultarDadosDosApartamento.opcoesDoMenu(lista,listaDeProprietarios,listaDeInquilinos);
                 break;
             case "2":
             case "3":
@@ -66,14 +66,5 @@ public class MenuInicial extends Menu
                 sairDoSistema();
                 break;
         }
-    }
-
-
-    public Apartamento getApartamento() {
-        return apartamento;
-    }
-
-    public void setApartamento(Apartamento apartamento) {
-        this.apartamento = apartamento;
     }
 }

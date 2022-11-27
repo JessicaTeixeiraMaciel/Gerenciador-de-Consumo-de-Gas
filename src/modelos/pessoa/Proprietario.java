@@ -30,7 +30,6 @@ public class Proprietario extends Pessoa
     public Proprietario() {
     }
 
-
     public boolean isPossuiInquilino() {
         return possuiInquilino;
     }

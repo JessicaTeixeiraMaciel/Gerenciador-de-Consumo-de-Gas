@@ -9,23 +9,22 @@ import modelos.pessoa.Proprietario;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MenuConsultarDadosDoApartamento extends MenuEscolherApartamentoParaConsulta
-        implements FormatacaoDoMenu {
+public class MenuConsultarDadosDoApartamento extends MenuEscolherApartamentoParaConsulta {
 
     Proprietario proprietarioSelecionado;
     Inquilino inquilinoSelecionado;
 
 
 
-    public void exibirDadosDoApartamento(Apartamento apartamento){
+    public void exibirDadosDoApartamento(Apartamento apartamento, List<Proprietario> listaDeProprietarios,List<Apartamento> lista,List<Inquilino> listaDeInquilinos){
 
-        for (Proprietario proprietario : apartamentos.listaDeProprietarios()){
+        for (Proprietario proprietario : listaDeProprietarios){
             if (proprietario.getNumeroDoApartamento().equals(apartamento.getNumero())){
                 proprietarioSelecionado = proprietario;
             }
         }
 
-        for (Inquilino inquilino : apartamentos.listaDeInquilinos()){
+        for (Inquilino inquilino : listaDeInquilinos){
             if (inquilino.getNumeroDoApartamento().equals(apartamento.getNumero())){
                 inquilinoSelecionado = inquilino;
             }
@@ -35,7 +34,7 @@ public class MenuConsultarDadosDoApartamento extends MenuEscolherApartamentoPara
         System.out.print("Situação do apartamento: ");
 
         if(apartamento.isPossuiMedidorDeGas()){
-            System.out.println("Possi meididor de gás");
+            System.out.println("Possui medidor de gás");
         }else {
             System.out.println("Não possui medidor de gás");
         }
@@ -54,7 +53,7 @@ public class MenuConsultarDadosDoApartamento extends MenuEscolherApartamentoPara
             textoAmarelo("Dados do Inquilino");
             imprimirDados(inquilinoSelecionado);
         }
-        opcoesDoMenu(apartamento);
+        opcoesDoMenu(apartamento,lista,listaDeProprietarios,listaDeInquilinos);
     }
 
     public void imprimirDados(Pessoa pessoa){
@@ -64,22 +63,23 @@ public class MenuConsultarDadosDoApartamento extends MenuEscolherApartamentoPara
     }
 
 
-    public void opcoesDoMenu(Apartamento apartamento) {
-        textoAmarelo("Insira 'e' para editar os dados ou qualquer outro digito para voltar ao menu anterior.");
+    public void opcoesDoMenu(Apartamento apartamento,List<Apartamento> lista,List<Proprietario> listaDeProprietarios,List<Inquilino> listaDeInquilinos) {
         List<String> listaDeOpcoes = new ArrayList<>();
-        listaDeOpcoes.add("v");
-        listaDeOpcoes.add("V");
-        listaDeOpcoes.add("e");
-        listaDeOpcoes.add("E");
-        validarEscolha(listaDeOpcoes);
+        do {
+            textoAmarelo("Insira 'e' para editar os dados ou 'v' para voltar ao menu anterior.");
+            listaDeOpcoes.add("v");
+            listaDeOpcoes.add("V");
+            listaDeOpcoes.add("e");
+            listaDeOpcoes.add("E");
+        } while (validarEscolha(listaDeOpcoes));
         switch (getEscolha().toLowerCase()){
             case "v":
                 MenuEscolherApartamentoParaConsulta menuEscolherApartamentoParaConsulta = new MenuEscolherApartamentoParaConsulta();
-                menuEscolherApartamentoParaConsulta.opcoesDoMenu();
+                menuEscolherApartamentoParaConsulta.opcoesDoMenu(lista,listaDeProprietarios,listaDeInquilinos);
                 break;
             case "e":
                 MenuEditarDadosDoApartamento menuEditarDadosDoApartamento = new MenuEditarDadosDoApartamento();
-                menuEditarDadosDoApartamento.opcoesDoMenu(apartamento,proprietarioSelecionado,inquilinoSelecionado);
+                menuEditarDadosDoApartamento.opcoesDoMenu(apartamento,proprietarioSelecionado,inquilinoSelecionado,lista,listaDeProprietarios,listaDeInquilinos);
                 break;
         }
     }

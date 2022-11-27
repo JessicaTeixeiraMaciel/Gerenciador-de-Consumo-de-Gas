@@ -26,18 +26,6 @@ public class Pessoa {
     public Pessoa() {
     }
 
-    public void editarNome(Pessoa pessoa){
-//        Scanner sc = new Scanner(System.in);
-//        String nome = sc.next();
-//        System.out.println("Confirma a alteração do nome para " + nome + "?");
-//        Menu menu = new Menu();
-//        menuInicial.validarEscolha(menu.opcaoSimNao());
-//        if (menuInicial.getEscolha().equals("N")|| menuInicial.getEscolha().equals("n")){
-//            System.out.println("Ok! Nenhuma alteração será feita.");
-//        } else {
-//            pessoa.setNome(nome);
-//        }
-    }
 
     public void editarNumero(Pessoa pessoa){
 //        Scanner sc = new Scanner(System.in);

@@ -1,6 +1,5 @@
 package modelos.menu;
 
-import interfaces.FormatacaoDoMenu;
 import modelos.apartamento.Apartamento;
 import modelos.pessoa.Inquilino;
 import modelos.pessoa.Pessoa;
@@ -8,13 +7,12 @@ import modelos.pessoa.Proprietario;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class MenuEditarDadosDoApartamento extends MenuConsultarDadosDoApartamento {
 
 
-
-    public void opcoesDoMenu(Apartamento apartamento, Proprietario proprietario, Inquilino inquilino) {
-        Pessoa pessoa = new Pessoa();
+    public void opcoesDoMenu(Apartamento apartamento, Proprietario proprietario, Inquilino inquilino,List<Apartamento> lista,List<Proprietario> listaDeProprietarios,List<Inquilino> listaDeInquilinos) {
         List<String> listaDeOpcoes = new ArrayList<>();
         listaDeOpcoes.add("Situação do apartamento");
         listaDeOpcoes.add("Responsável pelo apartamento");
@@ -31,7 +29,7 @@ public class MenuEditarDadosDoApartamento extends MenuConsultarDadosDoApartament
 
         do {
             limparTela();
-            textoAmarelo("Selecione qual dado do APARTAMENTO " + " deseja atualizar: ");
+            textoAmarelo("Selecione qual dado do APARTAMENTO " + apartamento.getNumero() + " deseja atualizar: ");
             imprimirListaDeOpcoes(listaDeOpcoes);
         } while (validarEscolha(enumerarOpcoes(listaDeOpcoes)));
 
@@ -60,31 +58,42 @@ public class MenuEditarDadosDoApartamento extends MenuConsultarDadosDoApartament
                 break;
             case "3":
                 System.out.println("Informe um novo nome para proprietário: ");
-                pessoa.editarNome(proprietario);
+                editarNome(proprietario);
                 break;
             case "4":
                 System.out.println("Informe um novo número de contato para proprietário: ");
-                pessoa.editarNumero(proprietario);
+                editarNumero(proprietario);
                 break;
             case "5":
                 System.out.println("Informe um novo email para proprietário: ");
-                pessoa.editarEmail(proprietario);
+                editarEmail(proprietario);
                 break;
             case"6":
                 System.out.println("Informe um novo nome para inquilino: ");
-                pessoa.editarNome(inquilino);
+                editarNome(inquilino);
                 break;
             case "7":
                 System.out.println("Informe um novo número de contato para inquilino: ");
-                pessoa.editarNumero(inquilino);
+                editarNumero(inquilino);
                 break;
             case "8":
-                System.out.println("Informe um novo email para inwuilino: ");
-                pessoa.editarEmail(inquilino);
+                System.out.println("Informe um novo email para inquilino: ");
+                editarEmail(inquilino);
                 break;
         }
-        Menu menu = new Menu();
-        menu.continuarEditando();
+        continuarEditando(apartamento,proprietario,inquilino,lista,listaDeProprietarios,listaDeInquilinos);
+    }
+
+    public void continuarEditando(Apartamento apartamento, Proprietario proprietario, Inquilino inquilino,List<Apartamento> lista,List<Proprietario> listaDeProprietarios,List<Inquilino> listaDeInquilinos){
+        Scanner sc = new Scanner(System.in);
+        textoAmarelo("Insira 'c' para continuar editando ou qualquer outro digito para sair do modo de edição.");
+        String escolha = sc.next();
+        if ("c".equals(escolha) || "C".equals(escolha)) {
+            opcoesDoMenu(apartamento,proprietario,inquilino,lista,listaDeProprietarios,listaDeInquilinos);
+        } else {
+            limparTela();
+            exibirDadosDoApartamento(apartamento,listaDeProprietarios,lista,listaDeInquilinos);
+        }
     }
 
 
@@ -106,4 +115,51 @@ public class MenuEditarDadosDoApartamento extends MenuConsultarDadosDoApartament
         }
     }
 
+    public void editarNome(Pessoa pessoa){
+        String nome;
+        Scanner sc = new Scanner(System.in);
+        nome = sc.next();
+        do {
+            System.out.println("Confirma a alteração de " + pessoa.getNome() + " para " + nome + "? (s/n)");
+        } while (validarEscolha(opcaoSimNao()));
+
+        if (getEscolha().equals("N")|| getEscolha().equals("n")){
+            System.out.println("Ok! Nenhuma alteração será feita.");
+        } else if (getEscolha().equals("S")|| getEscolha().equals("s")){
+            pessoa.setNome(nome);
+            System.out.println("Nome alterado com sucesso!");
+        }
+    }
+
+    public void editarNumero(Pessoa pessoa){
+        String numero;
+        Scanner sc = new Scanner(System.in);
+        numero = sc.next();
+        do {
+            System.out.println("Confirma a alteração de " + pessoa.getNumeroDeContato() + " para " + numero + "? (s/n)");
+        } while (validarEscolha(opcaoSimNao()));
+
+        if (getEscolha().equals("N")|| getEscolha().equals("n")){
+            System.out.println("Ok! Nenhuma alteração será feita.");
+        } else if (getEscolha().equals("S")|| getEscolha().equals("s")){
+            pessoa.setNumeroDeContato(numero);
+            System.out.println("Número de contato alterado com sucesso!");
+        }
+    }
+
+    public void editarEmail(Pessoa pessoa){
+        String email;
+        Scanner sc = new Scanner(System.in);
+        email = sc.next();
+        do {
+            System.out.println("Confirma a alteração de " + pessoa.getEmail() + " para " + email + "? (s/n)");
+        } while (validarEscolha(opcaoSimNao()));
+
+        if (getEscolha().equals("N")|| getEscolha().equals("n")){
+            System.out.println("Ok! Nenhuma alteração será feita.");
+        } else if (getEscolha().equals("S")|| getEscolha().equals("s")){
+            pessoa.setEmail(email);
+            System.out.println("Email alterado com sucesso!");
+        }
+    }
 }

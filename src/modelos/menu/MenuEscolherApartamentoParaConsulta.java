@@ -1,28 +1,22 @@
 package modelos.menu;
 
-import banco.Apartamentos;
 import interfaces.FormatacaoDoMenu;
 import modelos.apartamento.Apartamento;
 import modelos.pessoa.Inquilino;
-import modelos.pessoa.Pessoa;
 import modelos.pessoa.Proprietario;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class MenuEscolherApartamentoParaConsulta extends MenuInicial
-        implements FormatacaoDoMenu {
-
-    Apartamento apartamentoSelecionado;
+public class MenuEscolherApartamentoParaConsulta extends MenuInicial {
 
 
 
-    @Override
-    public void opcoesDoMenu() {
+    public void opcoesDoMenu(List<Apartamento> lista,List<Proprietario> listaDeProprietarios,List<Inquilino> listaDeInquilinos) {
         limparTela();
         List<String> numerosDosApartamentos = new ArrayList<>();
-        for (Apartamento apartamento : apartamentos.listaDeApartamentos()){
+        for (Apartamento apartamento : lista){
             numerosDosApartamentos.add(apartamento.getNumero());
         }
         do {
@@ -31,7 +25,7 @@ public class MenuEscolherApartamentoParaConsulta extends MenuInicial
             System.out.println(numerosDosApartamentos.toString().replace("[","").replace("]","") + ")");
             System.out.println("Ou digite 'v' para voltar ao menu anterior.");
         } while (validarEscolha(numerosDosApartamentos));
-        irParaOpcaoSelecionada();
+        irParaOpcaoSelecionada(lista,listaDeProprietarios,listaDeInquilinos);
     }
 
     @Override
@@ -47,21 +41,22 @@ public class MenuEscolherApartamentoParaConsulta extends MenuInicial
         return !listaDeOpcoes.contains(getEscolha());
     }
 
-    @Override
-    public void irParaOpcaoSelecionada() {
+
+    public void irParaOpcaoSelecionada(List<Apartamento> listaDeApartamentos, List<Proprietario> listaDeProprietarios,List<Inquilino> listaDeInquilinos) {
+        Apartamento apartamentoSelecionado = null;
         if (getEscolha().equals("V") || getEscolha().equals("v")){
             MenuInicial menuInicial = new MenuInicial();
-            menuInicial.opcoesDoMenu();
+            menuInicial.opcoesDoMenu(listaDeApartamentos,listaDeProprietarios,listaDeInquilinos);
         } else {
             limparTela();
 
-            for (Apartamento apartamento : apartamentos.listaDeApartamentos()){
+            for (Apartamento apartamento :listaDeApartamentos){
                 if (apartamento.getNumero().equals(getEscolha())){
                     apartamentoSelecionado = apartamento;
                 }
             }
             MenuConsultarDadosDoApartamento menuConsultarDadosDoApartamento = new MenuConsultarDadosDoApartamento();
-            menuConsultarDadosDoApartamento.exibirDadosDoApartamento(apartamentoSelecionado);
+            menuConsultarDadosDoApartamento.exibirDadosDoApartamento(apartamentoSelecionado, listaDeProprietarios,listaDeApartamentos,listaDeInquilinos);
         }
     }
 }

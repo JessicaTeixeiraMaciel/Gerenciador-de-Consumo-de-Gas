@@ -1,14 +1,13 @@
 package modelos.menu;
 
-import banco.Apartamentos;
-import modelos.apartamento.Apartamento;
+import banco.BancoInicial;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
-    Apartamentos apartamentos = new Apartamentos();
+
     private String escolha;
 
 
@@ -48,7 +47,7 @@ public class Menu {
         System.out.println(ANSI_RESET);
     }
 
-    
+
     public void imprimirListaDeOpcoes (List<String> listaDeOpcoes){
         int i = 1;
         for (String opcao : listaDeOpcoes){
@@ -76,11 +75,6 @@ public class Menu {
         return listaDeOpcoes;
     }
 
-    public void continuarEditando(){
-        Scanner sc = new Scanner(System.in);
-        textoAmarelo("Insira 'c' para continuar editando ou qualquer outro digito para sair do modo de edição.");
-        escolha = sc.next();
-    }
 
     public void sairDoSistema (){
         System.out.println("Tchau! Até a próxima! :)");
