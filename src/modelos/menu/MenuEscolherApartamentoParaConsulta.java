@@ -1,6 +1,5 @@
 package modelos.menu;
 
-import interfaces.FormatacaoDoMenu;
 import modelos.apartamento.Apartamento;
 import modelos.pessoa.Inquilino;
 import modelos.pessoa.Proprietario;
@@ -10,8 +9,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class MenuEscolherApartamentoParaConsulta extends MenuInicial {
-
-
 
     public void opcoesDoMenu(List<Apartamento> lista,List<Proprietario> listaDeProprietarios,List<Inquilino> listaDeInquilinos) {
         limparTela();

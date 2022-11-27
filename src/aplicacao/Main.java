@@ -1,3 +1,5 @@
+package aplicacao;
+
 import banco.BancoInicial;
 import modelos.apartamento.Apartamento;
 import modelos.menu.MenuInicial;

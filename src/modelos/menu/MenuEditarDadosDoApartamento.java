@@ -11,7 +11,6 @@ import java.util.Scanner;
 
 public class MenuEditarDadosDoApartamento extends MenuConsultarDadosDoApartamento {
 
-
     public void opcoesDeEdicao(Apartamento apartamento, Proprietario proprietario, Inquilino inquilino,List<Apartamento> lista,List<Proprietario> listaDeProprietarios,List<Inquilino> listaDeInquilinos) {
         limparTela();
         List<String> listaDeOpcoes = new ArrayList<>();
@@ -110,7 +109,6 @@ public class MenuEditarDadosDoApartamento extends MenuConsultarDadosDoApartament
         }
         return !listaDeOpcoes.contains(getEscolha());
     }
-
 
     public void editarSituacaoApartamento(Apartamento apartamento){
         boolean possuiMedidor = apartamento.isPossuiMedidorDeGas();

@@ -1,6 +1,5 @@
 package modelos.menu;
 
-import interfaces.FormatacaoDoMenu;
 import modelos.apartamento.Apartamento;
 import modelos.pessoa.Inquilino;
 import modelos.pessoa.Proprietario;

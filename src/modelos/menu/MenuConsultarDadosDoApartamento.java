@@ -1,6 +1,5 @@
 package modelos.menu;
 
-import interfaces.FormatacaoDoMenu;
 import modelos.apartamento.Apartamento;
 import modelos.pessoa.Inquilino;
 import modelos.pessoa.Pessoa;
@@ -13,8 +12,6 @@ public class MenuConsultarDadosDoApartamento extends MenuEscolherApartamentoPara
 
     Proprietario proprietarioSelecionado;
     Inquilino inquilinoSelecionado;
-
-
 
     public void exibirDadosDoApartamento(Apartamento apartamento, List<Proprietario> listaDeProprietarios,List<Apartamento> lista,List<Inquilino> listaDeInquilinos){
 
@@ -61,7 +58,6 @@ public class MenuConsultarDadosDoApartamento extends MenuEscolherApartamentoPara
         System.out.println("Contato: " + pessoa.getNumeroDeContato());
         System.out.println("Email: " + pessoa.getEmail());
     }
-
 
     public void opcoesDoMenu(Apartamento apartamento,List<Apartamento> lista,List<Proprietario> listaDeProprietarios,List<Inquilino> listaDeInquilinos) {
         List<String> listaDeOpcoes = new ArrayList<>();

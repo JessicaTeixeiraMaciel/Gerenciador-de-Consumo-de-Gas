@@ -1,17 +1,12 @@
 package modelos.menu;
 
-import banco.BancoInicial;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Menu {
 
     private String escolha;
 
-
-    Scanner sc = new Scanner(System.in);
     String ANSI_AMARELO = "\u001B[33m";
     String ANSI_RESET = "\u001B[0m";
     String ANSI_CINZA = "\u001B[37m";
