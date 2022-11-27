@@ -12,12 +12,13 @@ import java.util.Scanner;
 public class MenuEditarDadosDoApartamento extends MenuConsultarDadosDoApartamento {
 
 
-    public void opcoesDoMenu(Apartamento apartamento, Proprietario proprietario, Inquilino inquilino,List<Apartamento> lista,List<Proprietario> listaDeProprietarios,List<Inquilino> listaDeInquilinos) {
+    public void opcoesDeEdicao(Apartamento apartamento, Proprietario proprietario, Inquilino inquilino,List<Apartamento> lista,List<Proprietario> listaDeProprietarios,List<Inquilino> listaDeInquilinos) {
+        limparTela();
         List<String> listaDeOpcoes = new ArrayList<>();
         listaDeOpcoes.add("Situação do apartamento");
         listaDeOpcoes.add("Responsável pelo apartamento");
         listaDeOpcoes.add("Nome do proprietário");
-        listaDeOpcoes.add("Celular do priprietário");
+        listaDeOpcoes.add("Celular do proprietário");
         listaDeOpcoes.add("Email do proprietário");
 
         if(proprietario.isPossuiInquilino()){
@@ -25,18 +26,16 @@ public class MenuEditarDadosDoApartamento extends MenuConsultarDadosDoApartament
             listaDeOpcoes.add("Celular do inquilino");
             listaDeOpcoes.add("Email do inquilino");
         }
-        separador();
 
         do {
-            limparTela();
             textoAmarelo("Selecione qual dado do APARTAMENTO " + apartamento.getNumero() + " deseja atualizar: ");
             imprimirListaDeOpcoes(listaDeOpcoes);
         } while (validarEscolha(enumerarOpcoes(listaDeOpcoes)));
-
+        limparTela();
         switch (getEscolha()){
             case "1":
                 do {
-                    opcoesEditarSituacaoApartamento(apartamento);
+                    editarSituacaoApartamento(apartamento);
                 }while (validarEscolha(opcaoSimNao()));
                 if (getEscolha().equals("n") || getEscolha().equals("N")){
                     System.out.println("Nenhuma alteração foi feita.");
@@ -47,7 +46,7 @@ public class MenuEditarDadosDoApartamento extends MenuConsultarDadosDoApartament
                 break;
             case "2":
                 do {
-                    opcoesEditarPossuiInquilino(proprietario);
+                    editarPossuiInquilino(proprietario);
                 }while (validarEscolha(opcaoSimNao()));
                 if (getEscolha().equals("n") || getEscolha().equals("N")){
                     System.out.println("Nenhuma alteração foi feita.");
@@ -81,23 +80,39 @@ public class MenuEditarDadosDoApartamento extends MenuConsultarDadosDoApartament
                 editarEmail(inquilino);
                 break;
         }
-        continuarEditando(apartamento,proprietario,inquilino,lista,listaDeProprietarios,listaDeInquilinos);
+        continuarEditando(apartamento,proprietario,inquilino,lista,listaDeProprietarios,listaDeInquilinos, listaDeOpcoes);
     }
 
-    public void continuarEditando(Apartamento apartamento, Proprietario proprietario, Inquilino inquilino,List<Apartamento> lista,List<Proprietario> listaDeProprietarios,List<Inquilino> listaDeInquilinos){
-        Scanner sc = new Scanner(System.in);
-        textoAmarelo("Insira 'c' para continuar editando ou qualquer outro digito para sair do modo de edição.");
-        String escolha = sc.next();
-        if ("c".equals(escolha) || "C".equals(escolha)) {
-            opcoesDoMenu(apartamento,proprietario,inquilino,lista,listaDeProprietarios,listaDeInquilinos);
-        } else {
-            limparTela();
-            exibirDadosDoApartamento(apartamento,listaDeProprietarios,lista,listaDeInquilinos);
+    public void continuarEditando(Apartamento apartamento, Proprietario proprietario, Inquilino inquilino,List<Apartamento> lista,List<Proprietario> listaDeProprietarios,List<Inquilino> listaDeInquilinos,List<String> listaDeOpcoes){
+        do {
+            textoAmarelo("Insira 'e' para continuar editando ou 'v' para sair do modo de edição.");
+        }while(validarEscolha(listaDeOpcoes));
+        switch (getEscolha().toLowerCase()){
+            case "e":
+                opcoesDeEdicao(apartamento,proprietario,inquilino,lista,listaDeProprietarios,listaDeInquilinos);
+            case "v":
+                limparTela();
+                exibirDadosDoApartamento(apartamento,listaDeProprietarios,lista,listaDeInquilinos);
         }
     }
 
+    @Override
+    public boolean validarEscolha(List<String> listaDeOpcoes) {
+        listaDeOpcoes.add("V");
+        listaDeOpcoes.add("v");
+        listaDeOpcoes.add("E");
+        listaDeOpcoes.add("e");
+        Scanner sc = new Scanner(System.in);
+        textoCiano("Informe sua opção aqui:" );
+        setEscolha(sc.next());
+        if (!listaDeOpcoes.contains(getEscolha())){
+            textoVermelho("Entrada inválida! Tente Novamente.\n");
+        }
+        return !listaDeOpcoes.contains(getEscolha());
+    }
 
-    public void opcoesEditarSituacaoApartamento(Apartamento apartamento){
+
+    public void editarSituacaoApartamento(Apartamento apartamento){
         boolean possuiMedidor = apartamento.isPossuiMedidorDeGas();
         if (possuiMedidor){
             System.out.println("Deseja mudar a situação do apartamento para 'Não possui medidor de gás'? (s/n)");
@@ -106,7 +121,7 @@ public class MenuEditarDadosDoApartamento extends MenuConsultarDadosDoApartament
         }
     }
 
-    public void opcoesEditarPossuiInquilino(Proprietario proprietario){
+    public void editarPossuiInquilino(Proprietario proprietario){
         boolean possuiInquilino = proprietario.isPossuiInquilino();
         if (possuiInquilino){
             System.out.println("Deseja mudar o responsável do imóvel para 'Proprietário'? (s/n)");

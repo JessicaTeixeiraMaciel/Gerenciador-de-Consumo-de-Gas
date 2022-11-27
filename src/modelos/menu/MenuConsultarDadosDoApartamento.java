@@ -79,7 +79,7 @@ public class MenuConsultarDadosDoApartamento extends MenuEscolherApartamentoPara
                 break;
             case "e":
                 MenuEditarDadosDoApartamento menuEditarDadosDoApartamento = new MenuEditarDadosDoApartamento();
-                menuEditarDadosDoApartamento.opcoesDoMenu(apartamento,proprietarioSelecionado,inquilinoSelecionado,lista,listaDeProprietarios,listaDeInquilinos);
+                menuEditarDadosDoApartamento.opcoesDeEdicao(apartamento,proprietarioSelecionado,inquilinoSelecionado,lista,listaDeProprietarios,listaDeInquilinos);
                 break;
         }
     }
