@@ -1,7 +1,12 @@
 package modelos.menu;
 
+import banco.Cilindros;
 import interfaces.FormatacaoDoMenu;
 import modelos.apartamento.Apartamento;
+import modelos.cilindro.Cilindro;
+import modelos.fornecedor.Fornecedor;
+import modelos.menu.apartamentos.MenuEscolherApartamentoParaConsulta;
+import modelos.menu.cilindros.MenuConsultarCilindros;
 import modelos.pessoa.Inquilino;
 import modelos.pessoa.Proprietario;
 
@@ -9,7 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class MenuInicial extends Menu implements FormatacaoDoMenu {
+public class MenuInicial extends Menu {
+    List<String> listaDeOpcoes = new ArrayList<>();;
 
 
     public MenuInicial() {
@@ -26,8 +32,9 @@ public class MenuInicial extends Menu implements FormatacaoDoMenu {
     }
 
 
-    public void opcoesDoMenu(List<Apartamento> lista, List<Proprietario> listaDeProprietarios, List<Inquilino> listaDeInquilinos){
-        List<String> listaDeOpcoes = new ArrayList<>();
+
+    public void opcoesDoMenu(List<Apartamento> lista, List<Proprietario> listaDeProprietarios, List<Inquilino> listaDeInquilinos,List<Cilindro> listaDeCilindros){
+
         listaDeOpcoes.add("Consultar dados dos apartamentos");
         listaDeOpcoes.add("Consultar trocas de cilindros");
         listaDeOpcoes.add("Consultar Lista de Fornecedores");
@@ -37,8 +44,9 @@ public class MenuInicial extends Menu implements FormatacaoDoMenu {
             System.out.println("O que deseja fazer?");
             imprimirListaDeOpcoes(listaDeOpcoes);
         } while (validarEscolha(enumerarOpcoes(listaDeOpcoes)));
-        irParaOpcaoSelecionada(lista, listaDeProprietarios, listaDeInquilinos);
+        irParaOpcaoSelecionada(lista, listaDeProprietarios, listaDeInquilinos,listaDeCilindros);
     }
+
 
     public boolean validarEscolha(List<String> listaDeOpcoes){
         Scanner sc = new Scanner(System.in);
@@ -51,14 +59,17 @@ public class MenuInicial extends Menu implements FormatacaoDoMenu {
     }
 
 
-    public void irParaOpcaoSelecionada(List<Apartamento> lista, List<Proprietario> listaDeProprietarios, List<Inquilino> listaDeInquilinos) {
+    public void irParaOpcaoSelecionada(List<Apartamento> lista, List<Proprietario> listaDeProprietarios, List<Inquilino> listaDeInquilinos,List<Cilindro> listaDeCilindros) {
         switch (getEscolha().toLowerCase()){
             case "1":
-                MenuEscolherApartamentoParaConsulta consultarDadosDosApartamento = new MenuEscolherApartamentoParaConsulta();
-                consultarDadosDosApartamento.opcoesDoMenu(lista,listaDeProprietarios,listaDeInquilinos);
+                MenuEscolherApartamentoParaConsulta menuConsultarDadosDosApartamento = new MenuEscolherApartamentoParaConsulta();
+                menuConsultarDadosDosApartamento.opcoesDoMenu(lista,listaDeProprietarios,listaDeInquilinos,listaDeCilindros);
                 break;
             case "2":
-            case "3":
+                limparTela();
+                MenuConsultarCilindros menuConsultarCilindros = new MenuConsultarCilindros();
+                menuConsultarCilindros.opcoesDoMenu(listaDeCilindros);
+                break;
             case "4":
                 sairDoSistema();
                 break;

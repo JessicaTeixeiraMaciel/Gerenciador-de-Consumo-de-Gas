@@ -1,7 +1,8 @@
-package modelos.menu;
+package modelos.menu.apartamentos;
 
 import interfaces.FormatacaoDoMenu;
 import modelos.apartamento.Apartamento;
+import modelos.cilindro.Cilindro;
 import modelos.pessoa.Inquilino;
 import modelos.pessoa.Pessoa;
 import modelos.pessoa.Proprietario;
@@ -9,12 +10,12 @@ import modelos.pessoa.Proprietario;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MenuConsultarDadosDoApartamento extends MenuEscolherApartamentoParaConsulta implements FormatacaoDoMenu {
+public class MenuConsultarDadosDoApartamento extends MenuEscolherApartamentoParaConsulta {
 
     Proprietario proprietarioSelecionado;
     Inquilino inquilinoSelecionado;
 
-    public void exibirDadosDoApartamento(Apartamento apartamento, List<Proprietario> listaDeProprietarios,List<Apartamento> lista,List<Inquilino> listaDeInquilinos){
+    public void exibirDadosDoApartamento(Apartamento apartamento, List<Proprietario> listaDeProprietarios,List<Apartamento> lista,List<Inquilino> listaDeInquilinos,List<Cilindro> listaDeCilindros){
 
         for (Proprietario proprietario : listaDeProprietarios){
             if (proprietario.getNumeroDoApartamento().equals(apartamento.getNumero())){
@@ -51,7 +52,7 @@ public class MenuConsultarDadosDoApartamento extends MenuEscolherApartamentoPara
             textoAmarelo("Dados do Inquilino");
             imprimirDados(inquilinoSelecionado);
         }
-        opcoesDoMenu(apartamento,lista,listaDeProprietarios,listaDeInquilinos);
+        opcoesDoMenu(apartamento,lista,listaDeProprietarios,listaDeInquilinos,listaDeCilindros);
     }
 
     public void imprimirDados(Pessoa pessoa){
@@ -60,7 +61,7 @@ public class MenuConsultarDadosDoApartamento extends MenuEscolherApartamentoPara
         System.out.println("Email: " + pessoa.getEmail());
     }
 
-    public void opcoesDoMenu(Apartamento apartamento,List<Apartamento> lista,List<Proprietario> listaDeProprietarios,List<Inquilino> listaDeInquilinos) {
+    public void opcoesDoMenu(Apartamento apartamento, List<Apartamento> lista, List<Proprietario> listaDeProprietarios, List<Inquilino> listaDeInquilinos, List<Cilindro> listaDeCilindros) {
         List<String> listaDeOpcoes = new ArrayList<>();
         do {
             textoAmarelo("Insira 'e' para editar os dados ou 'v' para voltar ao menu anterior.");
@@ -72,11 +73,11 @@ public class MenuConsultarDadosDoApartamento extends MenuEscolherApartamentoPara
         switch (getEscolha().toLowerCase()){
             case "v":
                 MenuEscolherApartamentoParaConsulta menuEscolherApartamentoParaConsulta = new MenuEscolherApartamentoParaConsulta();
-                menuEscolherApartamentoParaConsulta.opcoesDoMenu(lista,listaDeProprietarios,listaDeInquilinos);
+                menuEscolherApartamentoParaConsulta.opcoesDoMenu(lista,listaDeProprietarios,listaDeInquilinos,listaDeCilindros);
                 break;
             case "e":
                 MenuEditarDadosDoApartamento menuEditarDadosDoApartamento = new MenuEditarDadosDoApartamento();
-                menuEditarDadosDoApartamento.opcoesDoMenu(apartamento,proprietarioSelecionado,inquilinoSelecionado,lista,listaDeProprietarios,listaDeInquilinos);
+                menuEditarDadosDoApartamento.opcoesDoMenu(apartamento,proprietarioSelecionado,inquilinoSelecionado,lista,listaDeProprietarios,listaDeInquilinos,listaDeCilindros);
                 break;
         }
     }

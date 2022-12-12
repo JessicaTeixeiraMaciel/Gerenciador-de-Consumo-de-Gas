@@ -1,12 +1,14 @@
 package aplicacao;
 
-import banco.BancoInicial;
+import banco.Apartamentos;
+import banco.Cilindros;
 import modelos.apartamento.Apartamento;
+import modelos.cilindro.Cilindro;
+import modelos.fornecedor.Fornecedor;
 import modelos.menu.MenuInicial;
 import modelos.pessoa.Inquilino;
 import modelos.pessoa.Proprietario;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
@@ -15,15 +17,22 @@ public class Main {
         List<Apartamento> listaDeApartamentos;
         List<Proprietario> listaDeProprietarios;
         List<Inquilino> listaDeInquilinos;
+        List<Cilindro> listaDeCilindros;
 
-        BancoInicial bancoInicial = new BancoInicial();
-        listaDeApartamentos = bancoInicial.criarApartamentos();
-        listaDeProprietarios = bancoInicial.adicionarProprietarios(listaDeApartamentos);
-        listaDeInquilinos = bancoInicial.adicionarInquilinos(listaDeApartamentos);
-        bancoInicial.atualizacaoDeProprietarios(listaDeProprietarios);
-        bancoInicial.atualizacaoDeInquilinos(listaDeInquilinos);
+
+
+        Apartamentos apartamentos = new Apartamentos();
+        listaDeApartamentos = apartamentos.criarApartamentos();
+        listaDeProprietarios = apartamentos.adicionarProprietarios(listaDeApartamentos);
+        listaDeInquilinos = apartamentos.adicionarInquilinos(listaDeApartamentos);
+        apartamentos.atualizacaoDeProprietarios(listaDeProprietarios);
+        apartamentos.atualizacaoDeInquilinos(listaDeInquilinos);
+
+        Cilindros cilindros = new Cilindros();
+        listaDeCilindros = cilindros.listaDeCilindros();
+        int i = listaDeCilindros.size();
 
         MenuInicial menuInicial = new MenuInicial();
-        menuInicial.opcoesDoMenu(listaDeApartamentos,listaDeProprietarios,listaDeInquilinos);
+        menuInicial.opcoesDoMenu(listaDeApartamentos,listaDeProprietarios,listaDeInquilinos,listaDeCilindros);
     }
 }

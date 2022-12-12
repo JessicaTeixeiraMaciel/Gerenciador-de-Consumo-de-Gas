@@ -1,7 +1,9 @@
-package modelos.menu;
+package modelos.menu.apartamentos;
 
 import interfaces.FormatacaoDoMenu;
 import modelos.apartamento.Apartamento;
+import modelos.cilindro.Cilindro;
+import modelos.menu.MenuInicial;
 import modelos.pessoa.Inquilino;
 import modelos.pessoa.Proprietario;
 
@@ -9,22 +11,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class MenuEscolherApartamentoParaConsulta extends MenuInicial implements FormatacaoDoMenu {
+public class MenuEscolherApartamentoParaConsulta extends MenuInicial {
 
-    @Override
-    public void opcoesDoMenu(List<Apartamento> lista,List<Proprietario> listaDeProprietarios,List<Inquilino> listaDeInquilinos) {
+
+    public void opcoesDoMenu(List<Apartamento> lista,List<Proprietario> listaDeProprietarios,List<Inquilino> listaDeInquilinos,List<Cilindro> listaDeCilindros) {
         limparTela();
         List<String> numerosDosApartamentos = new ArrayList<>();
         for (Apartamento apartamento : lista){
             numerosDosApartamentos.add(apartamento.getNumero());
         }
         do {
-            System.out.println(ANSI_AMARELO + "CONSULTAR DADOS DOS APARTAMENTOS" + ANSI_RESET);
+            textoAmarelo("CONSULTAR DADOS DOS APARTAMENTOS");
             System.out.print("Insira o número do apartamento que deseja consultar (");
             System.out.println(numerosDosApartamentos.toString().replace("[","").replace("]","") + ")");
             System.out.println("Ou digite 'v' para voltar ao menu anterior.");
         } while (validarEscolha(numerosDosApartamentos));
-        irParaOpcaoSelecionada(lista,listaDeProprietarios,listaDeInquilinos);
+        irParaOpcaoSelecionada(lista,listaDeProprietarios,listaDeInquilinos, listaDeCilindros);
     }
 
     @Override
@@ -41,11 +43,11 @@ public class MenuEscolherApartamentoParaConsulta extends MenuInicial implements 
     }
 
 
-    public void irParaOpcaoSelecionada(List<Apartamento> listaDeApartamentos, List<Proprietario> listaDeProprietarios,List<Inquilino> listaDeInquilinos) {
+    public void irParaOpcaoSelecionada(List<Apartamento> listaDeApartamentos, List<Proprietario> listaDeProprietarios, List<Inquilino> listaDeInquilinos,List<Cilindro> listaDeCilindros) {
         Apartamento apartamentoSelecionado = null;
         if (getEscolha().equals("V") || getEscolha().equals("v")){
             MenuInicial menuInicial = new MenuInicial();
-            menuInicial.opcoesDoMenu(listaDeApartamentos,listaDeProprietarios,listaDeInquilinos);
+            menuInicial.opcoesDoMenu(listaDeApartamentos,listaDeProprietarios,listaDeInquilinos,listaDeCilindros);
         } else {
             limparTela();
 
@@ -55,7 +57,7 @@ public class MenuEscolherApartamentoParaConsulta extends MenuInicial implements 
                 }
             }
             MenuConsultarDadosDoApartamento menuConsultarDadosDoApartamento = new MenuConsultarDadosDoApartamento();
-            menuConsultarDadosDoApartamento.exibirDadosDoApartamento(apartamentoSelecionado, listaDeProprietarios,listaDeApartamentos,listaDeInquilinos);
+            menuConsultarDadosDoApartamento.exibirDadosDoApartamento(apartamentoSelecionado, listaDeProprietarios,listaDeApartamentos,listaDeInquilinos,listaDeCilindros);
         }
     }
 }

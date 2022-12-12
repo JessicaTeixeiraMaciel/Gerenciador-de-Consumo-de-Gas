@@ -7,7 +7,7 @@ import modelos.pessoa.Proprietario;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BancoInicial {
+public class Apartamentos {
 
 
     public List<Apartamento> criarApartamentos(){
