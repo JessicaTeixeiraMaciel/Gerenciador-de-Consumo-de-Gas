@@ -4,7 +4,6 @@ import banco.Apartamentos;
 import banco.Cilindros;
 import modelos.apartamento.Apartamento;
 import modelos.cilindro.Cilindro;
-import modelos.fornecedor.Fornecedor;
 import modelos.menu.MenuInicial;
 import modelos.pessoa.Inquilino;
 import modelos.pessoa.Proprietario;
@@ -20,7 +19,6 @@ public class Main {
         List<Cilindro> listaDeCilindros;
 
 
-
         Apartamentos apartamentos = new Apartamentos();
         listaDeApartamentos = apartamentos.criarApartamentos();
         listaDeProprietarios = apartamentos.adicionarProprietarios(listaDeApartamentos);
@@ -28,9 +26,11 @@ public class Main {
         apartamentos.atualizacaoDeProprietarios(listaDeProprietarios);
         apartamentos.atualizacaoDeInquilinos(listaDeInquilinos);
 
+
         Cilindros cilindros = new Cilindros();
         listaDeCilindros = cilindros.listaDeCilindros();
         int i = listaDeCilindros.size();
+
 
         MenuInicial menuInicial = new MenuInicial();
         menuInicial.opcoesDoMenu(listaDeApartamentos,listaDeProprietarios,listaDeInquilinos,listaDeCilindros);

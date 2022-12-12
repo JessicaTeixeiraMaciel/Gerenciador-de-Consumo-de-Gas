@@ -3,16 +3,13 @@ package banco;
 import modelos.apartamento.Apartamento;
 import modelos.pessoa.Inquilino;
 import modelos.pessoa.Proprietario;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Apartamentos {
 
-
     public List<Apartamento> criarApartamentos(){
         List<Apartamento> listaDeApartamentos = new ArrayList<>();
-
         listaDeApartamentos.add(new Apartamento("2", true));
         listaDeApartamentos.add(new Apartamento("3", true));
         listaDeApartamentos.add(new Apartamento("101", true));
@@ -23,27 +20,22 @@ public class Apartamentos {
         listaDeApartamentos.add(new Apartamento("202", true));
         listaDeApartamentos.add(new Apartamento("203", true));
         listaDeApartamentos.add(new Apartamento("204", true));
-
         return listaDeApartamentos;
     }
 
     public List<Proprietario> adicionarProprietarios(List<Apartamento> listaDeApartamentos){
         List<Proprietario> listaDeProprietarios = new ArrayList<>();
-        for (Apartamento apartamento : listaDeApartamentos) {
-            listaDeProprietarios.add(new Proprietario(apartamento.getNumero()));
-        }
+        listaDeApartamentos.forEach(e -> listaDeProprietarios.add(new Proprietario(e.getNumero())));
         return listaDeProprietarios;
     }
+
     public List<Inquilino> adicionarInquilinos(List<Apartamento> listaDeApartamentos){
         List<Inquilino> listaDeInquilinos = new ArrayList<>();
-        for (Apartamento apartamento : listaDeApartamentos) {
-            listaDeInquilinos.add(new Inquilino(apartamento.getNumero()));
-        }
+        listaDeApartamentos.forEach(e -> listaDeInquilinos.add(new Inquilino(e.getNumero())));
         return listaDeInquilinos;
     }
 
     public void atualizacaoDeProprietarios(List<Proprietario> lista){
-
         editarListaDeProprietarios(lista.get(0),"Amanda","(71) 00000-0000","amanda@email.com",false);
         editarListaDeProprietarios(lista.get(1),"Beatriz","(71) 11111-1111","beatriz@email.com",true);
         editarListaDeProprietarios(lista.get(2),"Carlos","(71) 22222-2222", "carlos@email.com",false);
@@ -54,15 +46,13 @@ public class Apartamentos {
         editarListaDeProprietarios(lista.get(7),"Hugo","(71) 77777-7777","hugo@email.com",false);
         editarListaDeProprietarios(lista.get(8),"Igor","(71) 88888-8888","igor@email.com",false);
         editarListaDeProprietarios(lista.get(9),"Júlia","(71) 99999-9999","julia@email.com",false);
-
     }
-    public void atualizacaoDeInquilinos(List<Inquilino> lista){
 
+    public void atualizacaoDeInquilinos(List<Inquilino> lista){
         editarListaDeInquilinos(lista.get(1),"Fulano","(71) 10101-1010","fulana@email.com");
         editarListaDeInquilinos(lista.get(4),"Cicrana","(71) 20202-2020","cicrana@email.com");
         editarListaDeInquilinos(lista.get(5),"Beltrano","(71) 20202-2020","beltrano@email.com");
     }
-
 
     public void editarListaDeProprietarios(Proprietario proprietario, String nome, String numero, String email,boolean possuiInquilino){
         proprietario.setNome(nome);

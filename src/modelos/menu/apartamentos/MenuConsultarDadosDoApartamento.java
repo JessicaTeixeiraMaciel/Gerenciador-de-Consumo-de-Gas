@@ -1,6 +1,5 @@
 package modelos.menu.apartamentos;
 
-import interfaces.FormatacaoDoMenu;
 import modelos.apartamento.Apartamento;
 import modelos.cilindro.Cilindro;
 import modelos.pessoa.Inquilino;
@@ -17,17 +16,10 @@ public class MenuConsultarDadosDoApartamento extends MenuEscolherApartamentoPara
 
     public void exibirDadosDoApartamento(Apartamento apartamento, List<Proprietario> listaDeProprietarios,List<Apartamento> lista,List<Inquilino> listaDeInquilinos,List<Cilindro> listaDeCilindros){
 
-        for (Proprietario proprietario : listaDeProprietarios){
-            if (proprietario.getNumeroDoApartamento().equals(apartamento.getNumero())){
-                proprietarioSelecionado = proprietario;
-            }
-        }
 
-        for (Inquilino inquilino : listaDeInquilinos){
-            if (inquilino.getNumeroDoApartamento().equals(apartamento.getNumero())){
-                inquilinoSelecionado = inquilino;
-            }
-        }
+        proprietarioSelecionado = listaDeProprietarios.stream().filter(e -> e.getNumeroDoApartamento().equals(apartamento.getNumero())).findFirst().orElse(null);
+
+        inquilinoSelecionado = listaDeInquilinos.stream().filter(e -> e.getNumeroDoApartamento().equals(apartamento.getNumero())).findFirst().orElse(null);
 
         textoAmarelo("Apartamento " + apartamento.getNumero());
         System.out.print("Situação do apartamento: ");

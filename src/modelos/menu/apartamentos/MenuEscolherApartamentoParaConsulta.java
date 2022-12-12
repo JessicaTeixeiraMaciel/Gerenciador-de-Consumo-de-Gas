@@ -1,6 +1,5 @@
 package modelos.menu.apartamentos;
 
-import interfaces.FormatacaoDoMenu;
 import modelos.apartamento.Apartamento;
 import modelos.cilindro.Cilindro;
 import modelos.menu.MenuInicial;
@@ -17,9 +16,9 @@ public class MenuEscolherApartamentoParaConsulta extends MenuInicial {
     public void opcoesDoMenu(List<Apartamento> lista,List<Proprietario> listaDeProprietarios,List<Inquilino> listaDeInquilinos,List<Cilindro> listaDeCilindros) {
         limparTela();
         List<String> numerosDosApartamentos = new ArrayList<>();
-        for (Apartamento apartamento : lista){
-            numerosDosApartamentos.add(apartamento.getNumero());
-        }
+
+        lista.forEach(e -> numerosDosApartamentos.add(e.getNumero()));
+
         do {
             textoAmarelo("CONSULTAR DADOS DOS APARTAMENTOS");
             System.out.print("Insira o número do apartamento que deseja consultar (");
@@ -44,18 +43,15 @@ public class MenuEscolherApartamentoParaConsulta extends MenuInicial {
 
 
     public void irParaOpcaoSelecionada(List<Apartamento> listaDeApartamentos, List<Proprietario> listaDeProprietarios, List<Inquilino> listaDeInquilinos,List<Cilindro> listaDeCilindros) {
-        Apartamento apartamentoSelecionado = null;
+
         if (getEscolha().equals("V") || getEscolha().equals("v")){
             MenuInicial menuInicial = new MenuInicial();
             menuInicial.opcoesDoMenu(listaDeApartamentos,listaDeProprietarios,listaDeInquilinos,listaDeCilindros);
         } else {
             limparTela();
 
-            for (Apartamento apartamento :listaDeApartamentos){
-                if (apartamento.getNumero().equals(getEscolha())){
-                    apartamentoSelecionado = apartamento;
-                }
-            }
+            Apartamento apartamentoSelecionado = listaDeApartamentos.stream().filter(e -> e.getNumero().equals(getEscolha())).findFirst().orElse(null);
+
             MenuConsultarDadosDoApartamento menuConsultarDadosDoApartamento = new MenuConsultarDadosDoApartamento();
             menuConsultarDadosDoApartamento.exibirDadosDoApartamento(apartamentoSelecionado, listaDeProprietarios,listaDeApartamentos,listaDeInquilinos,listaDeCilindros);
         }
