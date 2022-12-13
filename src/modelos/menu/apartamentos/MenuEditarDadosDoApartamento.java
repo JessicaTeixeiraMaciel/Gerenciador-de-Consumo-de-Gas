@@ -28,9 +28,9 @@ public class MenuEditarDadosDoApartamento extends MenuConsultarDadosDoApartament
         }
 
         do {
-            textoAmarelo("Selecione qual dado do APARTAMENTO " + apartamento.getNumero() + " deseja atualizar: ");
+            textoColorido("amarelo","Selecione qual dado do APARTAMENTO " + apartamento.getNumero() + " deseja atualizar: ");
             imprimirListaDeOpcoes(listaDeOpcoes);
-            textoAmarelo("Ou insira 'v' para voltar ao menu anterior.");
+            textoColorido("amarelo","Ou insira 'v' para voltar ao menu anterior.");
         } while (validarEscolha(enumerarOpcoes(listaDeOpcoes)));
         limparTela();
         switch (getEscolha()){
@@ -91,7 +91,7 @@ public class MenuEditarDadosDoApartamento extends MenuConsultarDadosDoApartament
 
     public void continuarEditando(Apartamento apartamento, Proprietario proprietario, Inquilino inquilino,List<Apartamento> lista,List<Proprietario> listaDeProprietarios,List<Inquilino> listaDeInquilinos,List<String> listaDeOpcoes,List<Cilindro> listaDeCilindros){
         do {
-            textoAmarelo("Insira 'e' para continuar editando ou 'v' para voltar ao menu anterior.");
+            textoColorido("amarelo","Insira 'e' para continuar editando ou 'v' para voltar ao menu anterior.");
         }while(validarEscolha(listaDeOpcoes));
         switch (getEscolha().toLowerCase()){
             case "e":
@@ -109,10 +109,10 @@ public class MenuEditarDadosDoApartamento extends MenuConsultarDadosDoApartament
         listaDeOpcoes.add("E");
         listaDeOpcoes.add("e");
         Scanner sc = new Scanner(System.in);
-        textoCiano("Informe sua opção aqui:" );
+        textoColorido("amarelo","Informe sua opção aqui:" );
         setEscolha(sc.next());
         if (!listaDeOpcoes.contains(getEscolha())){
-            textoVermelho("Entrada inválida! Tente Novamente.\n");
+            textoColorido("amarelo","Entrada inválida! Tente Novamente.\n");
         }
         return !listaDeOpcoes.contains(getEscolha());
     }

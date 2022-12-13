@@ -13,21 +13,13 @@ import java.util.Scanner;
 
 public class MenuInicial {
     private String escolha;
-    String ANSI_AMARELO = "\u001B[33m";
-    String ANSI_RESET = "\u001B[0m";
-    String ANSI_CINZA = "\u001B[37m";
-    String ANSI_VERMELHO = "\u001B[31m";
-    String ANSI_CIANO = "\u001B[36m";
-    List<String> listaDeOpcoes = new ArrayList<>();;
-
-
-    public MenuInicial() {
-    }
+    List<String> listaDeOpcoes = new ArrayList<>();
 
     public void boasVindas(){
         limparTela();
         System.out.println("Seja bem vindo ao gerenciador de consumo de gás do condomínio");
-        textoCiano("  ____                           _                                               _                \n" +
+        textoColorido("ciano",
+                "  ____                           _                                               _                \n" +
                 " |  _ \\    ___   ___            | |   __ _    ___    __ _   _ __    ___    ___  (_)   ___    __ _ \n" +
                 " | |_) |  / _ \\ / __|        _  | |  / _` |  / __|  / _` | | '__|  / _ \\  / __| | |  / __|  / _` |\n" +
                 " |  _ <  |  __/ \\__ \\  _    | |_| | | (_| | | (__  | (_| | | |    |  __/ | (__  | | | (__  | (_| |\n" +
@@ -36,7 +28,6 @@ public class MenuInicial {
 
 
     public void opcoesDoMenu(List<Apartamento> lista, List<Proprietario> listaDeProprietarios, List<Inquilino> listaDeInquilinos,List<Cilindro> listaDeCilindros){
-
         listaDeOpcoes.add("Consultar dados dos apartamentos");
         listaDeOpcoes.add("Consultar trocas de cilindros");
         listaDeOpcoes.add("Consultar Lista de Fornecedores");
@@ -52,10 +43,10 @@ public class MenuInicial {
 
     public boolean validarEscolha(List<String> listaDeOpcoes){
         Scanner sc = new Scanner(System.in);
-        textoCiano("Informe sua opção aqui:" );
+        textoColorido("ciano","Informe sua opção aqui:");
         setEscolha(sc.next());
         if (!listaDeOpcoes.contains(getEscolha())){
-            textoVermelho("Entrada inválida! Tente Novamente.\n");
+            textoColorido("vermelho","Entrada inválida! Tente Novamente.\n");
         }
         return !listaDeOpcoes.contains(getEscolha());
     }
@@ -75,9 +66,10 @@ public class MenuInicial {
             case "4":
                 sairDoSistema();
                 break;
+            default:
+                textoColorido("vermelho","Entrada inválida! Tente novamente.");
         }
     }
-
 
 
     public void limparTela(){
@@ -85,24 +77,28 @@ public class MenuInicial {
             System.out.println("\n");
         }
     }
-    public void textoAmarelo(String texto){
-        System.out.println(ANSI_AMARELO + texto + ANSI_RESET);
-    }
 
-    public void textoCiano(String texto){
-        System.out.println(ANSI_CIANO + texto + ANSI_RESET);
-    }
-
-    public void textoVermelho(String texto){
-        System.out.println(ANSI_VERMELHO + texto + ANSI_RESET);
+    public void textoColorido (String cor, String texto){
+        String corSelecionada;
+        String resetCor = "\u001B[0m";
+        switch (cor){
+            case "vermelho": corSelecionada = "\u001B[31m"; break;
+            case "amarelo": corSelecionada = "\u001B[33m"; break;
+            case "cinza": corSelecionada = "\u001B[37m"; break;
+            case "ciano": corSelecionada = "\u001B[36m"; break;
+            default: corSelecionada = "\u001B[30m";
+        }
+        System.out.println(corSelecionada + texto + resetCor);
     }
 
     public void separador(){
-        System.out.print(ANSI_CINZA);
-        for (int i = 0; i < 100; i++){
-            System.out.print("-");
+        String cor = "\u001B[37m";
+        String resetCor = "\u001B[0m";
+        int tamanhoDoSeparador = 100;
+        for (int i = 0; i < tamanhoDoSeparador; i++){
+            System.out.print(cor + "-" + resetCor);
         }
-        System.out.println(ANSI_RESET);
+        System.out.println();
     }
 
     public void imprimirListaDeOpcoes (List<String> listaDeOpcoes){
@@ -115,16 +111,11 @@ public class MenuInicial {
 
     public List<String> enumerarOpcoes(List<String> listaDeOpcoes){
         List<String> enumeracao = new ArrayList<>();
-        int i = 1;
-        for (String ignored : listaDeOpcoes){
-            enumeracao.add(String.valueOf(i));
-            i++;
-        }
+        listaDeOpcoes.forEach(e -> enumeracao.add(String.valueOf(listaDeOpcoes.indexOf(e))));
         return enumeracao;
     }
 
     public List<String> opcaoSimNao (){
-        List<String> listaDeOpcoes = new ArrayList<>();
         listaDeOpcoes.add("s");
         listaDeOpcoes.add("S");
         listaDeOpcoes.add("n");

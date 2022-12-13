@@ -13,6 +13,7 @@ import java.util.Scanner;
 public class MenuEscolherApartamentoParaConsulta extends MenuInicial {
 
 
+    @Override
     public void opcoesDoMenu(List<Apartamento> lista,List<Proprietario> listaDeProprietarios,List<Inquilino> listaDeInquilinos,List<Cilindro> listaDeCilindros) {
         limparTela();
         List<String> numerosDosApartamentos = new ArrayList<>();
@@ -20,7 +21,7 @@ public class MenuEscolherApartamentoParaConsulta extends MenuInicial {
         lista.forEach(e -> numerosDosApartamentos.add(e.getNumero()));
 
         do {
-            textoAmarelo("CONSULTAR DADOS DOS APARTAMENTOS");
+            textoColorido("amarelo","CONSULTAR DADOS DOS APARTAMENTOS");
             System.out.print("Insira o número do apartamento que deseja consultar (");
             System.out.println(numerosDosApartamentos.toString().replace("[","").replace("]","") + ")");
             System.out.println("Ou digite 'v' para voltar ao menu anterior.");
@@ -33,15 +34,16 @@ public class MenuEscolherApartamentoParaConsulta extends MenuInicial {
         listaDeOpcoes.add("V");
         listaDeOpcoes.add("v");
         Scanner sc = new Scanner(System.in);
-        textoCiano("Informe sua opção aqui:" );
+        textoColorido("ciano","Informe sua opção aqui:" );
         setEscolha(sc.next());
         if (!listaDeOpcoes.contains(getEscolha())){
-            textoVermelho("Entrada inválida! Tente Novamente.\n");
+            textoColorido("vermelho","Entrada inválida! Tente Novamente.\n");
         }
         return !listaDeOpcoes.contains(getEscolha());
     }
 
 
+    @Override
     public void irParaOpcaoSelecionada(List<Apartamento> listaDeApartamentos, List<Proprietario> listaDeProprietarios, List<Inquilino> listaDeInquilinos,List<Cilindro> listaDeCilindros) {
 
         if (getEscolha().equals("V") || getEscolha().equals("v")){
@@ -50,7 +52,7 @@ public class MenuEscolherApartamentoParaConsulta extends MenuInicial {
         } else {
             limparTela();
 
-            Apartamento apartamentoSelecionado = listaDeApartamentos.stream().filter(e -> e.getNumero().equals(getEscolha())).findFirst().orElse(null);
+            Apartamento apartamentoSelecionado = listaDeApartamentos.stream().filter(e -> e.getNumero().contains(getEscolha())).findFirst().orElseThrow();
 
             MenuConsultarDadosDoApartamento menuConsultarDadosDoApartamento = new MenuConsultarDadosDoApartamento();
             menuConsultarDadosDoApartamento.exibirDadosDoApartamento(apartamentoSelecionado, listaDeProprietarios,listaDeApartamentos,listaDeInquilinos,listaDeCilindros);

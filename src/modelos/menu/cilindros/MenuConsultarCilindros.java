@@ -1,14 +1,13 @@
 package modelos.menu.cilindros;
 
-import modelos.apartamento.Apartamento;
+
 import modelos.cilindro.Cilindro;
 import modelos.menu.MenuInicial;
-import modelos.pessoa.Inquilino;
-import modelos.pessoa.Proprietario;
 
+
+import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -30,16 +29,17 @@ public class MenuConsultarCilindros extends MenuInicial {
     }
 
     public void exibirDadosDosCilindro(Cilindro cilindro){
-        textoAmarelo("Cilindro " + cilindro.getIdentificao());
+        textoColorido("amarelo","Cilindro " + cilindro.getIdentificao());
+        System.out.println("- Status: " + cilindro.status(76));
         System.out.println("- Fornecedor: " + cilindro.getFornecedor());
         System.out.println("- Data da compra: " + cilindro.getDataDaCompra().format(formatarData));
         System.out.println("- Valor: " + formatarValor.format(cilindro.getValor())) ;
-        System.out.println("- Status: " + cilindro.getStatus());
         if (cilindro.isFoiAberto()){
             System.out.println("- Data de abertura do cilindro: " + cilindro.getDataDeAbertura().format(formatarData));
             if (cilindro.isEstaVazio()){
                 System.out.println("- Data de esgotamento: " + cilindro.getDataDeEsgotamento().format(formatarData));
             }
+            System.out.println("- Total de dias usando o cilindro: " + cilindro.diasDeUso() + " dias");
         }
         separador();
     }

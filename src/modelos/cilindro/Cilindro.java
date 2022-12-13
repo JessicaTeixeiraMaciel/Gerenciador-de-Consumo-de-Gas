@@ -1,10 +1,13 @@
 package modelos.cilindro;
 
+import org.joda.time.DateTime;
+import org.joda.time.Days;
+import org.joda.time.Period;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class Cilindro {
-    public String identificao;
+    private String identificao;
     private String fornecedor;
     private LocalDate dataDaCompra;
     private BigDecimal valor;
@@ -24,6 +27,30 @@ public class Cilindro {
         this.dataDeEsgotamento = dataDeEsgotamento;
         this.foiAberto = foiAberto;
         this.estaVazio = estaVazio;
+    }
+
+    public int diasDeUso(){
+        if (dataDeEsgotamento == null){
+            return Days.daysBetween(DateTime.parse(String.valueOf(getDataDeAbertura())),DateTime.now()).getDays();
+        } else {
+            return Days.daysBetween(DateTime.parse(String.valueOf(getDataDeAbertura())),DateTime.parse(String.valueOf(getDataDeEsgotamento()))).getDays();
+        }
+    }
+
+    public String status(int mediaDoTotalDeDiasDeUso){
+        if (!isFoiAberto()){
+            return "Cheio";
+        } else if (isEstaVazio()){
+            return "Vazio";
+        } else if(dataDeAbertura == null){
+            return "Em uso (para informações mais detalhadas preencha a data de abertura do cilindro)";
+        }else if(diasDeUso() <= (mediaDoTotalDeDiasDeUso/3)){
+            return "Em uso (quase cheio)";
+        } else if (diasDeUso() <= ((mediaDoTotalDeDiasDeUso/3)*2)){
+            return "Em uso (próximo a metade)";
+        }else{
+            return "Em uso (quase vazio)";
+        }
     }
 
     public String getIdentificao() {

@@ -21,7 +21,7 @@ public class MenuConsultarDadosDoApartamento extends MenuEscolherApartamentoPara
 
         inquilinoSelecionado = listaDeInquilinos.stream().filter(e -> e.getNumeroDoApartamento().equals(apartamento.getNumero())).findFirst().orElse(null);
 
-        textoAmarelo("Apartamento " + apartamento.getNumero());
+        textoColorido("amarelo","Apartamento " + apartamento.getNumero());
         System.out.print("Situação do apartamento: ");
 
         if(apartamento.isPossuiMedidorDeGas()){
@@ -37,11 +37,11 @@ public class MenuConsultarDadosDoApartamento extends MenuEscolherApartamentoPara
             System.out.println("Proprietário");
         }
         separador();
-        textoAmarelo("Dados do Proprietário");
+        textoColorido("amarelo","Dados do Proprietário");
         imprimirDados(proprietarioSelecionado);
         separador();
         if (proprietarioSelecionado.isPossuiInquilino()){
-            textoAmarelo("Dados do Inquilino");
+            textoColorido("amarelo","Dados do Inquilino");
             imprimirDados(inquilinoSelecionado);
         }
         opcoesDoMenu(apartamento,lista,listaDeProprietarios,listaDeInquilinos,listaDeCilindros);
@@ -56,21 +56,18 @@ public class MenuConsultarDadosDoApartamento extends MenuEscolherApartamentoPara
     public void opcoesDoMenu(Apartamento apartamento, List<Apartamento> lista, List<Proprietario> listaDeProprietarios, List<Inquilino> listaDeInquilinos, List<Cilindro> listaDeCilindros) {
         List<String> listaDeOpcoes = new ArrayList<>();
         do {
-            textoAmarelo("Insira 'e' para editar os dados ou 'v' para voltar ao menu anterior.");
+            textoColorido("amarelo","Insira 'e' para editar os dados ou 'v' para voltar ao menu anterior.");
             listaDeOpcoes.add("v");
             listaDeOpcoes.add("V");
             listaDeOpcoes.add("e");
             listaDeOpcoes.add("E");
         } while (validarEscolha(listaDeOpcoes));
-        switch (getEscolha().toLowerCase()){
-            case "v":
-                MenuEscolherApartamentoParaConsulta menuEscolherApartamentoParaConsulta = new MenuEscolherApartamentoParaConsulta();
-                menuEscolherApartamentoParaConsulta.opcoesDoMenu(lista,listaDeProprietarios,listaDeInquilinos,listaDeCilindros);
-                break;
-            case "e":
-                MenuEditarDadosDoApartamento menuEditarDadosDoApartamento = new MenuEditarDadosDoApartamento();
-                menuEditarDadosDoApartamento.opcoesDoMenu(apartamento,proprietarioSelecionado,inquilinoSelecionado,lista,listaDeProprietarios,listaDeInquilinos,listaDeCilindros);
-                break;
+        if (getEscolha().equalsIgnoreCase("v")){
+            MenuEscolherApartamentoParaConsulta menuEscolherApartamentoParaConsulta = new MenuEscolherApartamentoParaConsulta();
+            menuEscolherApartamentoParaConsulta.opcoesDoMenu(lista,listaDeProprietarios,listaDeInquilinos,listaDeCilindros);
+        } else{
+            MenuEditarDadosDoApartamento menuEditarDadosDoApartamento = new MenuEditarDadosDoApartamento();
+            menuEditarDadosDoApartamento.opcoesDoMenu(apartamento,proprietarioSelecionado,inquilinoSelecionado,lista,listaDeProprietarios,listaDeInquilinos,listaDeCilindros);
         }
     }
 }
